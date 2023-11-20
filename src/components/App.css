@@ -1,0 +1,72 @@
+@import url(../vendor/fonts.css);
+@import url(../vendor/normalize.css);
+
+.weather {
+  position: relative;
+}
+
+.weather_info {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  color: white;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.weather_image {
+  width: 100%;
+}
+
+.main {
+  padding: 0 20px;
+}
+
+.card_section {
+  margin-top: 20px;
+  font-family: "CabinetGrotesk-Medium";
+}
+
+.card__container {
+  position: relative;
+}
+
+.card__name {
+  font-family: "CabinetGrotesk-Bold";
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  position: absolute;
+  top: 15px;
+  left: 116px;
+  right: 116px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.card__image {
+  width: 328px;
+  height: 328px;
+  border-radius: 10px;
+}
+
+.card_items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+.weather__type-title {
+}

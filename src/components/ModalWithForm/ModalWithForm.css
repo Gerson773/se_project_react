@@ -1,0 +1,126 @@
+.modal {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__content {
+  background-color: white;
+  position: relative;
+  max-width: 496px;
+  width: 100%;
+  border-radius: 20px;
+  padding: 34px 36px;
+}
+
+.modal__title {
+  display: flex;
+  font-family: "CabinetGrotesk-Bold";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000;
+  position: relative;
+  top: -24px;
+}
+
+.close__button-x {
+  background-image: url(../../images/xclosebtn.svg);
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.modal__label {
+  font-family: "CabinetGrotesk-Medium";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #000;
+  position: relative;
+}
+
+.modal__input {
+  width: 100%;
+  max-width: 440px;
+  max-height: 24px;
+  box-sizing: border-box;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  border-bottom-width: 1px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding-bottom: 4px;
+}
+
+.modal__header {
+  font-family: "CabinetGrotesk-Bold";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #000;
+  padding-bottom: 8px;
+}
+
+.modal__input::placeholder {
+  font-family: "CabinetGrotesk-Medium";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+.weather__type-title {
+  font-family: "CabinetGrotesk-Bold";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #000;
+  padding-top: 24px;
+}
+
+.weather__type-container {
+}
+
+.weather__type-option {
+}
+
+.weather__radio-input {
+  color: #000;
+  border: 1px;
+  border-color: #000;
+  margin-right: 10px;
+  padding-bottom: 10px;
+}
+
+.weather__radio-label {
+  font-family: "CabinetGrotesk-Bold";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #000;
+  padding-bottom: 8px;
+}
+
+.add__garment-btn {
+  font-family: "CabinetGrotesk-Bold";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 8px 16px 8px 16px;
+  margin-top: 32px;
+}

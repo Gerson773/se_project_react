@@ -1,20 +1,47 @@
 .header {
-  background-color: aquamarine;
   display: flex;
   justify-content: space-between;
   align-items: center;
   min-height: 60px;
-  padding: 0 20px;
+  padding: 32px 40px 28px;
 }
 
 .header__logo {
   display: flex;
-  gap: 20px;
+  gap: 24px;
   align-items: center;
 }
 
 .header__avatar-logo {
   display: flex;
-  gap: 20px;
+  gap: 12px;
   align-items: center;
+  border: 1px;
+  border-color: #000;
+}
+
+.current__date {
+  font-family: "CabinetGrotesk-Bold";
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.add__clothes-button {
+  font-family: "CabinetGrotesk-Bold";
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.header__avatar-name {
+  font-family: "Cabinet-Grotesk-Bold";
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.8px;
+  color: #000;
 }

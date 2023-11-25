@@ -31,14 +31,17 @@ function App() {
   };
 
   useEffect(() => {
-    getForecastWeather().then((data) => {
-      const temperature = parseWeatherData(data);
-      const city = parseLocation(data);
+    getForecastWeather()
+      .then((data) => {
+        const temperature = parseWeatherData(data);
+        const city = parseLocation(data);
 
-      console.log(temperature);
-      setTemp(temperature);
-      setLocation(city);
-    });
+        setTemp(temperature);
+        setLocation(city);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   }, []);
 
   return (
@@ -57,28 +60,29 @@ function App() {
           onClose={handleCloseModal}
         >
           <p className="modal__header">Name</p>
-
-          <label className="modal__label">
+          <label className="modal__label" htmlFor="name">
             <input
+              id="name"
               className="modal__input modal__input_type_name"
               type="text"
               name="name"
               placeholder="Name"
               minLength="1"
               maxLength="30"
-            />{" "}
+            />
           </label>
 
-          <p className="modal__header">Image</p>
-          <label className="modal__label">
+          <p className="modal__header">image</p>
+          <label className="modal__label" htmlFor="imageLink">
             <input
+              id="imageLink"
               className="modal__input modal__input_type_image"
               type="url"
               placeholder="Image URL"
               name="link"
               minLength="1"
               maxLength="30"
-            />{" "}
+            />
           </label>
           <p className="weather__type-title">Select the Weather Type:</p>
           <div className="weather__type-container">
@@ -108,8 +112,8 @@ function App() {
               <input
                 className="weather__radio-input"
                 type="radio"
-                id="warm"
-                value="warm"
+                id="cold"
+                value="cold"
               />
               <label htmlFor="cold" className="weather__radio-label">
                 Cold

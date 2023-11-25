@@ -1,5 +1,7 @@
 import React from "react";
 import "./Header.css";
+import logo from "../../images/logo.svg";
+import avatar from "../../images/avatar.svg";
 
 const Header = ({ onCreateModal, setLocation }) => {
   const currentDate = new Date().toLocaleString("default", {
@@ -11,7 +13,7 @@ const Header = ({ onCreateModal, setLocation }) => {
     <header className="header">
       <div className="header__logo">
         <div>
-          <img src={require("../../images/logo.svg").default} alt="logo" />
+          <img src={logo} alt="logo" />
         </div>
         <div>
           <div className="current__date">
@@ -29,9 +31,9 @@ const Header = ({ onCreateModal, setLocation }) => {
             + Add Clothes
           </button>
         </div>
-        <div className="header__avatar-name">Gerson G</div>
+        <h3 className="header__avatar-name">Gerson G</h3>
         <div>
-          <img src={require("../../images/avatar.svg").default} alt="avatar" />
+          <img src={avatar} alt="avatar" />
         </div>
       </div>
     </header>

@@ -59,8 +59,8 @@ function App() {
           title="New Garment"
           onClose={handleCloseModal}
         >
-          <p className="modal__header">Name</p>
           <label className="modal__label" htmlFor="name">
+            <p className="modal__header">Name</p>
             <input
               id="name"
               className="modal__input modal__input_type_name"
@@ -72,8 +72,8 @@ function App() {
             />
           </label>
 
-          <p className="modal__header">image</p>
           <label className="modal__label" htmlFor="imageLink">
+            <p className="modal__header">image</p>
             <input
               id="imageLink"
               className="modal__input modal__input_type_image"
@@ -89,6 +89,7 @@ function App() {
             <div className="weather__type-option">
               <input
                 className="weather__radio-input"
+                name="name"
                 type="radio"
                 id="hot"
                 value="hot"
@@ -100,6 +101,7 @@ function App() {
             <div>
               <input
                 className="weather__radio-input"
+                name="name"
                 type="radio"
                 id="warm"
                 value="warm"
@@ -111,6 +113,7 @@ function App() {
             <div>
               <input
                 className="weather__radio-input"
+                name="name"
                 type="radio"
                 id="cold"
                 value="cold"

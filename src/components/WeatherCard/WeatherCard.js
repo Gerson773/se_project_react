@@ -1,3 +1,5 @@
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+
 const weatherOptions = [
   {
     url: require("../../images/day/sunny.svg").default,
@@ -21,7 +23,16 @@ const weatherOptions = [
   },
 ];
 
-const WeatherCard = ({ day, type, weatherTemp = 0 }) => {
+// {
+//   weatherData.temperature[currentTemperatureUnit];
+// }
+
+const WeatherCard = ({
+  day,
+  type,
+  weatherTemp,
+  currentTemperatureUnit = 0,
+}) => {
   const imageSrc = weatherOptions.filter((i) => {
     return i.day === day && i.type === type;
   });
@@ -30,7 +41,9 @@ const WeatherCard = ({ day, type, weatherTemp = 0 }) => {
   return (
     <section className="weather" id="weather">
       <img src={imageSrcUrl} className="weather_image" alt="Weather Icon" />
-      <div className="weather_info">{weatherTemp} F </div>
+      <div className="weather_info">
+        {weatherTemp} {currentTemperatureUnit}
+      </div>
     </section>
   );
 };

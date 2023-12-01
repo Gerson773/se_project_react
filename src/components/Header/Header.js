@@ -2,6 +2,7 @@ import React from "react";
 import "./Header.css";
 import logo from "../../images/logo.svg";
 import avatar from "../../images/avatar.svg";
+import ToggleSwitch from "../../ToggleSwitch/ToggleSwitch";
 
 const Header = ({ onCreateModal, setLocation }) => {
   const currentDate = new Date().toLocaleString("default", {
@@ -22,6 +23,7 @@ const Header = ({ onCreateModal, setLocation }) => {
         </div>
       </div>
       <div className="header__avatar-logo">
+        <ToggleSwitch />
         <div>
           <button
             className="add__clothes-button"

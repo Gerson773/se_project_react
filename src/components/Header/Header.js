@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React from "react";
 import "./Header.css";
 import logo from "../../images/logo.svg";
@@ -14,7 +15,9 @@ const Header = ({ onCreateModal, setLocation }) => {
     <header className="header">
       <div className="header__logo">
         <div>
-          <img src={logo} alt="logo" />
+          <Link to="/">
+            <img src={logo} alt="logo" />
+          </Link>
         </div>
         <div>
           <div className="current__date">
@@ -33,7 +36,9 @@ const Header = ({ onCreateModal, setLocation }) => {
             + Add Clothes
           </button>
         </div>
-        <h3 className="header__avatar-name">Gerson G</h3>
+        <Link to="/profile" className="header__avatar-name">
+          Gerson G
+        </Link>
         <div>
           <img src={avatar} alt="avatar" />
         </div>

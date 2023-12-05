@@ -42,7 +42,7 @@ const WeatherCard = ({
     <section className="weather" id="weather">
       <img src={imageSrcUrl} className="weather_image" alt="Weather Icon" />
       <div className="weather_info">
-        {weatherTemp} {currentTemperatureUnit}
+        {weatherTemp} ° {currentTemperatureUnit}
       </div>
     </section>
   );

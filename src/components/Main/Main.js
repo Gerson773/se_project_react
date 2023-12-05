@@ -41,7 +41,7 @@ function Main({ weatherTemp, onSelectCard }) {
         currentTemperatureUnit={currentTemperatureUnit}
       />
       <section className="card_section" id="card-sectopn">
-        Today is {temp} {currentTemperatureUnit} / You may want to wear:
+        Today is {temp} ° {currentTemperatureUnit} / You may want to wear:
         <div className="card_items">
           {filteredCards.map((item) => (
             <ItemCard key={item._id} item={item} onSelectCard={onSelectCard} />

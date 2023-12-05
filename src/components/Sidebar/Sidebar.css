@@ -1,0 +1,25 @@
+.sidebar {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.avatar__sidebar-logo {
+  display: flex;
+  margin-left: 40px;
+  height: 40px;
+  width: 40px;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.sidebar__avatar-name {
+  display: flex;
+  font-family: "Cabinet-Grotesk-Bold";
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.8px;
+  color: #000;
+  margin-left: 16px;
+  margin-top: 10px;
+  white-space: nowrap;
+}

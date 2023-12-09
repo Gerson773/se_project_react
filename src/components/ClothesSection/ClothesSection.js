@@ -1,6 +1,5 @@
 import React from "react";
 import "./ClothesSection.css";
-import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
 
 const ClothesSection = ({
@@ -8,7 +7,7 @@ const ClothesSection = ({
   onCardDelete,
   onAddItem,
   onCreateModal,
-  clothingItems = defaultClothingItems,
+  clothingItems,
 }) => {
   return (
     <div className="clothesSection">

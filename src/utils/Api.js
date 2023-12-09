@@ -1,4 +1,5 @@
-const baseUrl = "http://localhost:3001";
+const baseUrl =
+  "https://my-json-server.typicode.com/gerson773/se_project_react";
 
 const processServerResponse = (res) => {
   if (res.ok) {
@@ -19,7 +20,7 @@ export function getItems() {
   }).then(processServerResponse);
 }
 
-export function addItem(name, imageUrl, weather) {
+export function addItem(name, link, weather) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -27,7 +28,7 @@ export function addItem(name, imageUrl, weather) {
     },
     body: JSON.stringify({
       name,
-      imageUrl,
+      link,
       weather,
     }),
   }).then(processServerResponse);

@@ -52,15 +52,28 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
+  const handleAddItemSubmit = ({ name, link, weatherType }) => {
+    const item = { name, link, weather: weatherType };
+    addItem(item)
+      .then((res) => {
+        console.log(res);
+        setClothingItems([item, ...clothingItems]);
+        handleCloseModal();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   // const handleAddItemSubmit = ({ name, link, weatherType }) => {
   //   addItem({
   //     name,
   //     link,
   //     weather: weatherType,
   //   })
-  //     .then((res) => {
-  //       console.log(res);
-  //       setClothingItems([res, ...clothingItems]);
+  //     .then((data) => {
+  //       console.log(data);
+  //       setClothingItems([data, ...clothingItems]);
   //       handleCloseModal();
   //     })
   //     .catch((error) => {
@@ -89,19 +102,6 @@ function App() {
         console.error("Error fetching items:", error);
       });
   }, []);
-
-  const handleAddItemSubmit = ({ name, link, weatherType }) => {
-    const item = { name, imageUrl: link, weather: weatherType };
-    addItem(item)
-      .then((res) => {
-        console.log(res);
-        setClothingItems([item, ...clothingItems]);
-        handleCloseModal();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   console.log(currentTemperatureUnit);
   return (
@@ -135,9 +135,9 @@ function App() {
         {activeModal === "create" && (
           <AddItemModal
             handleCloseModal={handleCloseModal}
-            onSubmit={handleAddItemSubmit}
             isOpen={activeModal === "create"}
             onAddItem={onAddItem}
+            handleAddItemSubmit={handleAddItemSubmit}
           />
         )}
         {activeModal === "preview" && (

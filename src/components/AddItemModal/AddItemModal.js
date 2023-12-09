@@ -8,6 +8,8 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
     setName(e.target.value);
   };
 
+  const [weatherType, setWeatherType] = useState("");
+
   const [link, setUrl] = useState("");
   const handleUrlChange = (e) => {
     console.log(e.target.value);
@@ -16,7 +18,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ name, link });
+    onAddItem({ name, link, weatherType });
   };
 
   return (
@@ -25,7 +27,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
       title="New Garment"
       onClose={handleCloseModal}
       isOpen={isOpen}
-      onSubmit={handleSubmit}
+      handleSubmit={handleSubmit}
     >
       <label className="modal__label" htmlFor="name">
         <p className="modal__header">Name</p>
@@ -51,7 +53,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
           placeholder="Image URL"
           name="link"
           minLength="1"
-          maxLength="30"
+          maxLength="300"
           value={link}
           onChange={handleUrlChange}
         />

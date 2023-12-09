@@ -47,3 +47,16 @@
 
 .selected__card-weather {
 }
+.delete__button-item {
+  position: absolute;
+  top: 542px;
+  right: 32px;
+  font-family: "CabinetGrotesk-Bold";
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #ff4d00;
+  border: none;
+  outline: none;
+  background: none;
+}

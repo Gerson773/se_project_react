@@ -1,4 +1,5 @@
 // import logo from "./images/logo.svg";
+import React from "react";
 import "./App.css";
 import Header from "./Header/Header";
 import Main from "./Main/Main";
@@ -13,7 +14,10 @@ import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUni
 import { Switch, Route } from "react-router-dom";
 import AddItemModal from "./AddItemModal/AddItemModal";
 import Profile from "./Profile/Profile";
+import { getItems, request, addItem } from "../utils/Api";
+// import itemsApi from "../utils/Api";
 // import Sidebar from "./Sidebar/Sidebar";
+// import ClothesSection from "./ClothesSection/ClothesSection";
 
 function App() {
   // const weatherTemp = "30°F";
@@ -22,6 +26,9 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [location, setLocation] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState([]);
+  // const [items, setItems] = React.useState([]);
+  // const [weather, setWeatherType] = useState("");
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -45,6 +52,22 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
+  // const handleAddItemSubmit = ({ name, link, weatherType }) => {
+  //   addItem({
+  //     name,
+  //     link,
+  //     weather: weatherType,
+  //   })
+  //     .then((res) => {
+  //       console.log(res);
+  //       setClothingItems([res, ...clothingItems]);
+  //       handleCloseModal();
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
   useEffect(() => {
     getForecastWeather()
       .then((data) => {
@@ -57,7 +80,29 @@ function App() {
       .catch((error) => {
         console.error("Error:", error);
       });
+
+    getItems()
+      .then((items) => {
+        setClothingItems(items);
+      })
+      .catch((error) => {
+        console.error("Error fetching items:", error);
+      });
   }, []);
+
+  const handleAddItemSubmit = ({ name, link, weatherType }) => {
+    const item = { name, imageUrl: link, weather: weatherType };
+    addItem(item)
+      .then((res) => {
+        console.log(res);
+        setClothingItems([item, ...clothingItems]);
+        handleCloseModal();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   console.log(currentTemperatureUnit);
   return (
     <div>
@@ -72,16 +117,25 @@ function App() {
 
         <Switch>
           <Route exact path="/">
-            <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
+            <Main
+              weatherTemp={temp}
+              onSelectCard={handleSelectedCard}
+              clothingItems={clothingItems}
+            />
           </Route>
           <Route path="/Profile">
-            <Profile onSelectCard={handleSelectedCard} />
+            <Profile
+              onSelectCard={handleSelectedCard}
+              onCreateModal={handleCreateModal}
+              clothingItems={clothingItems}
+            />
           </Route>
         </Switch>
         <Footer />
         {activeModal === "create" && (
           <AddItemModal
             handleCloseModal={handleCloseModal}
+            onSubmit={handleAddItemSubmit}
             isOpen={activeModal === "create"}
             onAddItem={onAddItem}
           />

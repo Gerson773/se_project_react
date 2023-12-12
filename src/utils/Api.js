@@ -1,5 +1,4 @@
-const baseUrl =
-  "https://my-json-server.typicode.com/gerson773/se_project_react";
+const baseUrl = "http://localhost:3001";
 
 const processServerResponse = (res) => {
   if (res.ok) {
@@ -20,7 +19,7 @@ export function getItems() {
   }).then(processServerResponse);
 }
 
-export function addItem(name, link, weather) {
+export function addItem({ name, link, weather }) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -39,50 +38,3 @@ export function removeItem(_id) {
     method: "DELETE",
   }).then(processServerResponse);
 }
-
-// function itemsApi() {
-//   return {
-//     getItem: () => {
-//       return fetch(`${baseUrl}/items`).then((res) => {
-//         if (res.ok) {
-//           return res.json();
-//         }
-//         return Promise.reject(`Error: ${res.status}`);
-//       });
-//     },
-
-//     addItem: (name, imageUrl, weather) => {
-//       return fetch(`${baseUrl}/items`, {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//           name,
-//           imageUrl,
-//           weather,
-//         }),
-//       }).then((res) => {
-//         console.log(res);
-//         if (res.ok) {
-//           return res.json();
-//         }
-//         return Promise.reject(`Error: ${res.status}`);
-//       });
-//     },
-
-//     removeItem: (id) => {
-//       console.log(id);
-//       return fetch(`${baseUrl}/items/${id}`, {
-//         method: "DELETE",
-//       }).then((res) => {
-//         if (res.ok) {
-//           return res.json();
-//         }
-//         return Promise.reject(`Error: ${res.status}`);
-//       });
-//     },
-//   };
-// }
-
-// export default itemsApi;

@@ -7,24 +7,20 @@
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 48px;
+  right: 48px;
   cursor: pointer;
 }
 
 .modal__container_item_view {
   display: flex;
   flex-direction: column;
-  max-width: 75vw;
-  max-height: 75vh;
-  height: auto;
-  width: auto;
   padding: 0;
-  position: relative;
 }
 
 .modal__container_item-title {
   font-family: "CabinetGrotest-Medium";
+  position: relative;
   font-style: normal;
   font-size: 20px;
   font-weight: 700;
@@ -36,9 +32,14 @@
 }
 
 .modal__image {
-  border-radius: 16px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  display: flex;
+  flex-direction: column;
+  max-width: 75vw;
+  max-height: 75vh;
+  height: auto;
+  width: auto;
+  padding: 0;
+  position: relative;
 }
 
 .selected__card-name {
@@ -49,7 +50,7 @@
 }
 .delete__button-item {
   position: absolute;
-  top: 542px;
+  top: 20px;
   right: 32px;
   font-family: "CabinetGrotesk-Bold";
   font-weight: 700;
@@ -59,4 +60,5 @@
   border: none;
   outline: none;
   background: none;
+  align-self: flex-end;
 }

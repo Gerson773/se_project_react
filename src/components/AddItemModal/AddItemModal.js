@@ -9,15 +9,16 @@ const AddItemModal = ({
 }) => {
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
-    console.log(e.target.value);
     setName(e.target.value);
   };
 
   const [weatherType, setWeatherType] = useState("");
+  const handleWeatherTypeChange = (e) => {
+    setWeatherType(e.target.value);
+  };
 
   const [link, setUrl] = useState("");
   const handleUrlChange = (e) => {
-    console.log(e.target.value);
     setUrl(e.target.value);
   };
 
@@ -72,6 +73,8 @@ const AddItemModal = ({
             type="radio"
             id="hot"
             value="hot"
+            checked={weatherType === "hot"}
+            onChange={handleWeatherTypeChange}
           />
           <label htmlFor="hot" className="weather__radio-label">
             Hot
@@ -84,6 +87,8 @@ const AddItemModal = ({
             type="radio"
             id="warm"
             value="warm"
+            checked={weatherType === "warm"}
+            onChange={handleWeatherTypeChange}
           />
           <label htmlFor="warm" className="weather__radio-label">
             Warm
@@ -96,6 +101,8 @@ const AddItemModal = ({
             type="radio"
             id="cold"
             value="cold"
+            checked={weatherType === "cold"}
+            onChange={handleWeatherTypeChange}
           />
           <label htmlFor="cold" className="weather__radio-label">
             Cold

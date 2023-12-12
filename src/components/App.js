@@ -4,7 +4,7 @@ import "./App.css";
 import Header from "./Header/Header";
 import Main from "./Main/Main";
 import Footer from "./Footer/Footer";
-import ModalWithForm from "./ModalWithForm/ModalWithForm";
+// import ModalWithForm from "./ModalWithForm/ModalWithForm";
 import { useState, useEffect } from "react";
 import ItemModal from "./ItemModal/ItemModal";
 import { getForecastWeather } from "../utils/weatherApi";
@@ -14,7 +14,7 @@ import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUni
 import { Switch, Route } from "react-router-dom";
 import AddItemModal from "./AddItemModal/AddItemModal";
 import Profile from "./Profile/Profile";
-import { getItems, request, addItem } from "../utils/Api";
+import { getItems, addItem, removeItem } from "../utils/Api";
 // import itemsApi from "../utils/Api";
 // import Sidebar from "./Sidebar/Sidebar";
 // import ClothesSection from "./ClothesSection/ClothesSection";
@@ -52,35 +52,6 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
-  const handleAddItemSubmit = ({ name, link, weatherType }) => {
-    const item = { name, link, weather: weatherType };
-    addItem(item)
-      .then((res) => {
-        console.log(res);
-        setClothingItems([item, ...clothingItems]);
-        handleCloseModal();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  // const handleAddItemSubmit = ({ name, link, weatherType }) => {
-  //   addItem({
-  //     name,
-  //     link,
-  //     weather: weatherType,
-  //   })
-  //     .then((data) => {
-  //       console.log(data);
-  //       setClothingItems([data, ...clothingItems]);
-  //       handleCloseModal();
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
   useEffect(() => {
     getForecastWeather()
       .then((data) => {
@@ -103,7 +74,31 @@ function App() {
       });
   }, []);
 
-  console.log(currentTemperatureUnit);
+  const handleAddItemSubmit = ({ name, link, weatherType }) => {
+    const item = { _id: null, name, link, weather: weatherType };
+    addItem(item)
+      .then((res) => {
+        const newItem = { ...item, _id: res._id };
+        setClothingItems([newItem, ...clothingItems]);
+        handleCloseModal();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleDeleteItem = (id) => {
+    removeItem(id)
+      .then(() => {
+        const filteredCards = clothingItems.filter((card) => card._id !== id);
+        setClothingItems(filteredCards);
+        handleCloseModal();
+      })
+      .catch((error) => {
+        console.error("Error", error);
+      });
+  };
+
   return (
     <div>
       <CurrentTemperatureUnitContext.Provider
@@ -141,7 +136,11 @@ function App() {
           />
         )}
         {activeModal === "preview" && (
-          <ItemModal selectedCard={selectCard} onClose={handleCloseModal} />
+          <ItemModal
+            selectedCard={selectCard}
+            onClose={handleCloseModal}
+            handleDelete={handleDeleteItem}
+          />
         )}
       </CurrentTemperatureUnitContext.Provider>
     </div>

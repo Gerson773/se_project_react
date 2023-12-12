@@ -3,7 +3,7 @@ import React from "react";
 import "./Header.css";
 import logo from "../../images/logo.svg";
 import avatar from "../../images/avatar.svg";
-import ToggleSwitch from "../../ToggleSwitch/ToggleSwitch";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 const Header = ({ onCreateModal, setLocation }) => {
   const currentDate = new Date().toLocaleString("default", {

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Profile.css";
 import ClothesSection from "../ClothesSection/ClothesSection";
-import SideBar from "../Sidebar/Sidebar";
+import SideBar from "../SideBar/SideBar";
 
 const Profile = ({
   clothingItems,

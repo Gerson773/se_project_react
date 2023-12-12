@@ -1,7 +1,7 @@
 import React from "react";
 import "./Profile.css";
-import Sidebar from "../Sidebar/Sidebar";
 import ClothesSection from "../ClothesSection/ClothesSection";
+import SideBar from "../Sidebar/Sidebar";
 
 const Profile = ({
   clothingItems,
@@ -12,7 +12,7 @@ const Profile = ({
 }) => {
   return (
     <section className="profile">
-      <Sidebar />
+      <SideBar />
 
       <div className="profile__container">
         <div>

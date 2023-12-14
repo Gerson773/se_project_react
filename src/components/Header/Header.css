@@ -36,6 +36,11 @@
   border: none;
   outline: none;
   background: none;
+  cursor: pointer;
+}
+
+.add__clothes-button:hover {
+  color: #ff4d00;
 }
 
 .header__avatar-name {

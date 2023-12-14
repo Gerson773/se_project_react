@@ -61,4 +61,9 @@
   outline: none;
   background: none;
   align-self: flex-end;
+  cursor: pointer;
+}
+
+.delete__button-item:hover {
+  color: #808080;
 }

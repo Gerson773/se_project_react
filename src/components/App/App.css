@@ -1,0 +1,23 @@
+@import url(../../vendor/fonts.css);
+@import url(../../vendor/normalize.css);
+
+.weather {
+  position: relative;
+}
+
+.weather_info {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  color: white;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.weather_image {
+  width: 100%;
+}
+
+.weather__type-title {
+}

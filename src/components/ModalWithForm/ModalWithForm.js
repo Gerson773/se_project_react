@@ -1,6 +1,5 @@
 import "./ModalWithForm.css";
 
-// const isButtonDisabled = true;
 const ModalWithForm = ({
   children,
   buttonText,
@@ -17,11 +16,7 @@ const ModalWithForm = ({
         <h3 className="modal__title"> {title} </h3>
         <form onSubmit={onSubmit}>
           {children}
-          <button
-            className="add__garment-btn"
-            type="submit"
-            // disabled={isButtonDisabled}
-          >
+          <button className="add__garment-btn" type="submit">
             {buttonText}
           </button>
         </form>

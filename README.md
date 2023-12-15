@@ -2,6 +2,42 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Title
+
+WTWR Is The Title of the application
+
+## Overview
+
+This website was created to help the user recommend which items to wear based on their location and weather.
+
+## Features
+
+The user is able to add items based on wether types, which can the be updated automatically in the home screen to help the user determine what to wear. The automated selection of items is computed by the app to make this process easier for the user.
+
+## Main Screen
+
+The main screen shows the recommended items based on the current weather. It also shows the current weather in Farenheit and Celsius. A temperaturre unit switch was created using React Router to switch from F to C. Also an Add Items button is located in the Main screen to help the user add items if needed.
+
+## Adding Items
+
+Adding items is simple by following the steps below:
+
+1. Open the website
+2. Click on +Add Clothes at the top right of the page
+3. Form opens
+4. The user submits the information and selects Weather Type.
+5. After clicking on "Add garment" the item is added to site for future or current use
+
+## Technologies Used
+
+React Context
+React Router
+API calls
+Mock Server
+JavaScript
+HTML
+CSS
+
 ## Available Scripts
 
 In the project directory, you can run:

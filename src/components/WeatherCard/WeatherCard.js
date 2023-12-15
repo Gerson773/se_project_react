@@ -1,3 +1,5 @@
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+
 import { weatherOptions } from "../../constants";
 
 const WeatherCard = ({

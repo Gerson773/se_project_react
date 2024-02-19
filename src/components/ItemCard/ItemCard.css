@@ -15,11 +15,23 @@
   background-color: rgba(255, 255, 255, 0.8);
   padding: 8px;
   border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card__image {
   width: 328px;
   height: 328px;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.card__like-icon {
+  display: flex;
+  position: absolute;
+  left: 225px;
+  right: 116px;
+  top: 24px;
   cursor: pointer;
 }

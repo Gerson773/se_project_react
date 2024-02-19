@@ -67,3 +67,11 @@
 .delete__button-item:hover {
   color: #808080;
 }
+
+.item__delete-button_visible {
+  display: block;
+}
+
+.item__delete-button_visible {
+  display: block;
+}

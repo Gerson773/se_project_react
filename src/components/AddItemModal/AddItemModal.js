@@ -34,7 +34,8 @@ const AddItemModal = ({
       onClose={handleCloseModal}
       isOpen={isOpen}
       onSubmit={handleSubmit}
-      buttonText="Add garment"
+      buttonText="Add Garment"
+      showButton={true}
     >
       <label className="modal__label" htmlFor="name">
         <p className="modal__header">Name</p>

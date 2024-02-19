@@ -1,11 +1,18 @@
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import logo from "../../images/logo.svg";
-import avatar from "../../images/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
 
-const Header = ({ onCreateModal, setLocation }) => {
+const Header = ({
+  onCreateModal,
+  setLocation,
+  onSignUp,
+  onLogin,
+  isLoggedIn,
+  currentUser,
+}) => {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -36,11 +43,42 @@ const Header = ({ onCreateModal, setLocation }) => {
             + Add Clothes
           </button>
         </div>
-        <Link to="/profile" className="header__avatar-name">
-          Gerson G
-        </Link>
+        {isLoggedIn ? (
+          <Link to="/profile" className="header__user-name">
+            {currentUser.name}
+          </Link>
+        ) : (
+          <div>
+            <Link
+              to="/signup"
+              className="sign__up-button"
+              type="text"
+              onClick={onSignUp}
+            >
+              Sign Up
+            </Link>
+          </div>
+        )}
         <div>
-          <img src={avatar} alt="avatar" />
+          {isLoggedIn ? (
+            currentUser.avatar ? (
+              <Link to="/profile">
+                <img
+                  src={currentUser.avatar}
+                  className="header__avatar-logo"
+                  alt="Avatar"
+                />
+              </Link>
+            ) : (
+              <UserPlaceHolder userName={currentUser.name} />
+            )
+          ) : (
+            <div>
+              <Link to="/login" className="log__in-button" onClick={onLogin}>
+                Log In
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </header>

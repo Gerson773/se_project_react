@@ -8,11 +8,15 @@ const ClothesSection = ({
   onAddItem,
   onCreateModal,
   clothingItems,
+  currentUser,
 }) => {
+  const userClothingItems = clothingItems.filter(
+    (item) => item.owner === currentUser._id
+  );
   return (
     <div className="clothesSection">
       <div className="clothesSection__items">
-        {clothingItems?.map((item) => (
+        {userClothingItems?.map((item) => (
           <ItemCard
             key={item._id}
             item={item}

@@ -22,7 +22,7 @@
   font-family: "CabinetGrotesk-Bold";
   font-weight: 700;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 20px;
   color: #000;
   position: relative;
   top: -24px;
@@ -122,7 +122,65 @@
   color: white;
   border-radius: 4px;
   background-color: black;
-
   padding: 8px 16px 8px 16px;
   margin-top: 32px;
+  cursor: pointer;
+}
+
+.alt__text-login {
+  font-family: "CabinetGrotesk-Medium";
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  margin-left: 12px;
+  cursor: pointer;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+}
+
+.register__signin {
+  margin-left: 12px;
+  margin-top: 30px;
+}
+
+.register__login-link {
+  font-family: "CabinetGrotesk-Medium";
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.next__signup-btn {
+  font-family: "CabinetGrotesk-Bold";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: white;
+  border-radius: 4px;
+  background-color: black;
+  padding: 8px 16px 8px 16px;
+  margin-top: 32px;
+  cursor: pointer;
+}
+
+.login__signin {
+  margin-left: 12px;
+  margin-top: 30px;
+}
+
+.signin__login-link {
+  font-family: "CabinetGrotesk-Medium";
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+  text-decoration: none;
 }

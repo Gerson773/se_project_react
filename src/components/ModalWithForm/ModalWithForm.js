@@ -3,6 +3,8 @@ import "./ModalWithForm.css";
 const ModalWithForm = ({
   children,
   buttonText,
+  showButton,
+  altText,
   title,
   onClose,
   name,
@@ -14,12 +16,14 @@ const ModalWithForm = ({
       <div className="modal__content">
         <button className="close__button-x" type="button" onClick={onClose} />
         <h3 className="modal__title"> {title} </h3>
-        <form onSubmit={onSubmit}>
-          {children}
-          <button className="add__garment-btn" type="submit">
-            {buttonText}
-          </button>
-        </form>
+        <form onSubmit={onSubmit}>{children}</form>
+        {showButton && buttonText && (
+          <div className="button-container">
+            <button className="add__garment-btn" type="submit">
+              {buttonText}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

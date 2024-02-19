@@ -21,20 +21,6 @@ const WeatherCard = ({
       </div>
     </section>
   );
-
-  // const imageSrc = weatherOptions.filter((i) => {
-  //   return i.day === day && i.type === type;
-  // });
-
-  // const imageSrcUrl = weatherOption[0].url || "";
-  // return (
-  //   <section className="weather" id="weather">
-  //     <img src={imageSrcUrl} className="weather_image" alt="Weather Icon" />
-  //     <div className="weather_info">
-  //       {weatherTemp} ° {currentTemperatureUnit}
-  //     </div>
-  //   </section>
-  // );
 };
 
 export default WeatherCard;

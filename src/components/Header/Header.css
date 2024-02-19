@@ -50,3 +50,37 @@
   line-height: 24.8px;
   color: #000;
 }
+
+.sign__up-button {
+  font-family: "CabinetGrotesk-Bold";
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sign__up-button:hover {
+  color: #ff4d00;
+}
+
+.log__in-button {
+  font-family: "CabinetGrotesk-Bold";
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.8px;
+  color: #000;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.log__in-button:hover {
+  color: #ff4d00;
+}

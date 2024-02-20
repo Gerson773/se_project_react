@@ -39,24 +39,24 @@ export function removeItem(_id, token) {
   }).then(processServerResponse);
 }
 
-export const addCardLike = (itemId) => {
+export const addCardLike = (_id) => {
   const token = localStorage.getItem("jwt");
-  return fetch(`${baseUrl}/items/${itemId}/likes`, {
-    method: "POST",
+  return fetch(`${baseUrl}/items/${_id}/likes`, {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   }).then(processServerResponse);
 };
 
-export const removeCardLike = (itemId) => {
+export const removeCardLike = (_id) => {
   const token = localStorage.getItem("jwt");
-  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+  return fetch(`${baseUrl}/items/${_id}/likes`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   }).then(processServerResponse);
 };

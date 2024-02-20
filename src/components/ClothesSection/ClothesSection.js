@@ -1,6 +1,8 @@
 import React from "react";
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useContext } from "react";
 
 const ClothesSection = ({
   onSelectCard,
@@ -8,11 +10,13 @@ const ClothesSection = ({
   onAddItem,
   onCreateModal,
   clothingItems,
-  currentUser,
 }) => {
+  const currentUser = useContext(CurrentUserContext);
+
   const userClothingItems = clothingItems.filter(
     (item) => item.owner === currentUser._id
   );
+
   return (
     <div className="clothesSection">
       <div className="clothesSection__items">

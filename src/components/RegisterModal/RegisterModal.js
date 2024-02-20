@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { Link, withRouter } from "react-router-dom";
 
-const RegisterModal = ({
-  handleCloseModal,
-  isOpen,
-  handleUserSubmit,
-  activeModal,
-}) => {
+const RegisterModal = ({ onClose, isOpen, handleUserSubmit, activeModal }) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -37,7 +32,7 @@ const RegisterModal = ({
     <ModalWithForm
       className="new__user-modal"
       title="Sign Up"
-      onClose={handleCloseModal}
+      onClose={onClose}
       isOpen={isOpen}
       onSignup={handleRegister}
       showButton={false}

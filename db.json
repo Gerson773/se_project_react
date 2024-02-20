@@ -19,12 +19,6 @@
       "link": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
     },
     {
-      "name": "Warm Gloves",
-      "link": "https://unsplash.com/photos/qLhOOuVHDtE/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Nnx8Z2xvdmVzfGVufDB8fHx8MTcwMjMzNzA1N3ww&force=true",
-      "weather": "cold",
-      "_id": 7
-    },
-    {
       "name": "Warm Scarf",
       "link": "https://unsplash.com/photos/z5UuOcQjXCY/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzAyMTAwMjQzfA&force=true",
       "weather": "cold",

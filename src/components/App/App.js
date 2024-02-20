@@ -35,7 +35,7 @@ function App() {
   const [location, setLocation] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const history = useHistory();
 
@@ -183,20 +183,20 @@ function App() {
       });
   };
 
-  const handleCardLike = ({ id, isLiked }) => {
-    const token = localStorage.getItem("jwt");
+  const handleCardLike = ({ id, isLiked, setIsLiked }) => {
     isLiked
-      ? addCardLike(id, token)
+      ? addCardLike(id)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((c) => (c._id === id ? updatedCard : c))
+              cards.map((c) => (c._id === id ? updatedCard.data : c))
             );
+            setIsLiked(true);
           })
           .catch((err) => console.log(err))
-      : removeCardLike(id, token)
+      : removeCardLike(id)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((c) => (c._id === id ? updatedCard : c))
+              cards.map((c) => (c._id === id ? updatedCard.data : c))
             );
           })
           .catch((error) => {
@@ -209,16 +209,14 @@ function App() {
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
-        <CurrentUserContext.Provider
-          value={{ currentUser, isLoggedIn, setLoggedIn, setCurrentUser }}
-        >
+        <CurrentUserContext.Provider value={currentUser} loggedIn={loggedIn}>
           <Header
             onCreateModal={handleCreateModal}
             onSignUp={handleSignupModal}
             onLogin={handleLoginModal}
             temp={temp}
             setLocation={location}
-            isLoggedIn={isLoggedIn}
+            loggedIn={loggedIn}
             currentUser={currentUser}
           />
 
@@ -244,7 +242,7 @@ function App() {
                 handleUserLogin={handleLogIn}
               />
             </Route>
-            <ProtectedRoute path="/profile" loggedIn={isLoggedIn}>
+            <ProtectedRoute path="/profile">
               <Profile
                 onSelectCard={handleSelectedCard}
                 onCreateModal={handleCreateModal}
@@ -269,23 +267,6 @@ function App() {
               handleDelete={handleDeleteItem}
             />
           )}
-
-          {/* {activeModal === "signup" && (
-            <RegisterModal
-              handleCloseModal={handleCloseModal}
-              isOpen={activeModal === "signup"}
-              handleUserSubmit={handleSignUp}
-            />
-          )}
-
-          {activeModal === "login" && (
-            <LoginModal
-              handleCloseModal={handleCloseModal}
-              isOpen={activeModal === "login"}
-              handleDelete={handleDeleteItem}
-              handleUserLogin={handleLogIn}
-            />
-          )} */}
         </CurrentUserContext.Provider>
       </CurrentTemperatureUnitContext.Provider>
     </div>

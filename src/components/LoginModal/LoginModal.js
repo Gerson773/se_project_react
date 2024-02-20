@@ -3,7 +3,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 import { Link, withRouter } from "react-router-dom";
 
-const LoginModal = ({ handleCloseModal, isOpen, handleUserLogin }) => {
+const LoginModal = ({ onClose, isOpen, handleUserLogin }) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -23,7 +23,7 @@ const LoginModal = ({ handleCloseModal, isOpen, handleUserLogin }) => {
     <ModalWithForm
       className="login__modal"
       title="Login"
-      onClose={handleCloseModal}
+      onClose={onClose}
       isOpen={isOpen}
       onLogin={handleLogin}
       showButton={false}

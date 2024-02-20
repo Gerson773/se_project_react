@@ -2,18 +2,21 @@ import React, { useState } from "react";
 import "./ItemCard.css";
 import likeIcon from "../../../src/images/likeIcon.svg";
 import isLikedIcon from "../../../src/images/islikedicon.svg";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useContext } from "react";
 
-const ItemCard = ({ item, onSelectCard, onCardLike, currentUser }) => {
-  const [liked, setLiked] = useState(
+const ItemCard = ({ item, onSelectCard, onCardLike }) => {
+  const currentUser = useContext(CurrentUserContext);
+  const [isLiked, setIsLiked] = useState(
     (item.likes ?? []).some((id) => id === currentUser._id)
   );
 
   const handleLike = () => {
-    setLiked(!liked);
-    onCardLike({ id: item._id, isLiked: !liked });
+    setIsLiked(!isLiked);
+    onCardLike({ id: item._id, isLiked: isLiked });
   };
 
-  const itemLikeButtonClassName = liked ? "liked" : "not-liked";
+  const itemLikeButtonClassName = isLiked ? "liked" : "not-liked";
 
   return (
     <div className="card__container">
@@ -30,7 +33,7 @@ const ItemCard = ({ item, onSelectCard, onCardLike, currentUser }) => {
         className={`card__like-icon ${itemLikeButtonClassName}`}
         onClick={handleLike}
       >
-        {liked ? (
+        {isLiked ? (
           <img src={isLikedIcon} alt="Liked Heart Icon" />
         ) : (
           <img src={likeIcon} alt="Default Heart Icon" />

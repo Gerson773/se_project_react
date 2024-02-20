@@ -19,7 +19,11 @@ const ModalWithForm = ({
         <form onSubmit={onSubmit}>{children}</form>
         {showButton && buttonText && (
           <div className="button-container">
-            <button className="add__garment-btn" type="submit">
+            <button
+              className="add__garment-btn"
+              type="submit"
+              onClick={onSubmit}
+            >
               {buttonText}
             </button>
           </div>

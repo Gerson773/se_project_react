@@ -13,19 +13,25 @@ const ClothesSection = ({
 }) => {
   const currentUser = useContext(CurrentUserContext);
 
+  const userClothingItems = clothingItems.filter(
+    (item) => item.owner === currentUser._id
+  );
+
   return (
     <div className="clothesSection">
       <div className="clothesSection__items">
-        {clothingItems?.map((item) => (
-          <ItemCard
-            key={item._id}
-            item={item}
-            onAddItem={onAddItem}
-            onSelectCard={onSelectCard}
-            onCardDelete={onCardDelete}
-            onCreateModal={onCreateModal}
-          />
-        ))}
+        {userClothingItems?.map((item) => {
+          return (
+            <ItemCard
+              key={item._id}
+              item={item}
+              onAddItem={onAddItem}
+              onSelectCard={onSelectCard}
+              onCardDelete={onCardDelete}
+              onCreateModal={onCreateModal}
+            />
+          );
+        })}
       </div>
     </div>
   );

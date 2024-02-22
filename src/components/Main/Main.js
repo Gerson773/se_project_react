@@ -5,7 +5,13 @@ import ItemCard from "../ItemCard/ItemCard";
 import { useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherTemp, onSelectCard, clothingItems, onCardLike }) {
+function Main({
+  weatherTemp,
+  onSelectCard,
+  clothingItems,
+  onCardLike,
+  item_id,
+}) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
@@ -30,6 +36,7 @@ function Main({ weatherTemp, onSelectCard, clothingItems, onCardLike }) {
   };
 
   const weatherType = getWeatherType();
+
   const filteredCards = clothingItems.filter((item) => {
     return item.weather.toLowerCase() === weatherType;
   });
@@ -45,18 +52,22 @@ function Main({ weatherTemp, onSelectCard, clothingItems, onCardLike }) {
       <section className="card_section" id="card-sectopn">
         Today is {temp} ° {currentTemperatureUnit} / You may want to wear:
         <div className="card_items">
-          {filteredCards?.map((item) => (
-            <ItemCard
-              key={item._id}
-              item={item}
-              onSelectCard={onSelectCard}
-              // id={item.id}
-              link={item.link}
-              name={item.name}
-              weather={item.weather}
-              onCardLike={onCardLike}
-            />
-          ))}
+          {filteredCards.map((item) => {
+            debugger;
+            console.log("Mapped Item:", item);
+            console.log("Item _id:", item._id);
+            return (
+              <ItemCard
+                key={item._id}
+                item={item}
+                onSelectCard={onSelectCard}
+                id={item_id}
+                link={item.link}
+                name={item.name}
+                weather={item.weather}
+              />
+            );
+          })}
         </div>
       </section>
     </main>

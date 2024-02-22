@@ -15,6 +15,7 @@ const LoginModal = ({ onClose, isOpen, handleUserLogin }) => {
   };
 
   const handleLogin = (e) => {
+    debugger;
     e.preventDefault();
     handleUserLogin({ email, password });
   };

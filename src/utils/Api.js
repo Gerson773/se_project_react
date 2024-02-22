@@ -14,12 +14,12 @@ export function getItems() {
   }).then(processServerResponse);
 }
 
-export function addItem({ name, link, weather }, token) {
+export function addItem({ name, link, weather, token }) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       name,
@@ -39,8 +39,7 @@ export function removeItem(_id, token) {
   }).then(processServerResponse);
 }
 
-export const addCardLike = (_id) => {
-  const token = localStorage.getItem("jwt");
+export const addCardLike = (_id, token) => {
   return fetch(`${baseUrl}/items/${_id}/likes`, {
     method: "PUT",
     headers: {
@@ -50,8 +49,7 @@ export const addCardLike = (_id) => {
   }).then(processServerResponse);
 };
 
-export const removeCardLike = (_id) => {
-  const token = localStorage.getItem("jwt");
+export const removeCardLike = (_id, token) => {
   return fetch(`${baseUrl}/items/${_id}/likes`, {
     method: "DELETE",
     headers: {

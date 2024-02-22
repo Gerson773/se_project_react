@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Header.css";
 import logo from "../../images/logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const Header = ({
   onCreateModal,
@@ -11,12 +12,13 @@ const Header = ({
   onSignUp,
   onLogin,
   isLoggedIn,
-  currentUser,
 }) => {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
+
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <header className="header">
@@ -34,15 +36,17 @@ const Header = ({
       </div>
       <div className="header__avatar-logo">
         <ToggleSwitch />
-        <div>
-          <button
-            className="add__clothes-button"
-            type="text"
-            onClick={onCreateModal}
-          >
-            + Add Clothes
-          </button>
-        </div>
+        {isLoggedIn && (
+          <div>
+            <button
+              className="add__clothes-button"
+              type="text"
+              onClick={onCreateModal}
+            >
+              + Add Clothes
+            </button>
+          </div>
+        )}
         {isLoggedIn ? (
           <Link to="/profile" className="header__user-name">
             {currentUser.name}

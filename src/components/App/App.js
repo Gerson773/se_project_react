@@ -78,6 +78,7 @@ function App() {
   };
 
   const handleLogIn = (user) => {
+    debugger;
     auth
       .authorize(user)
       .then((res) => {
@@ -95,15 +96,14 @@ function App() {
   };
 
   useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
-    console.log({ jwt });
-    if (jwt) {
-      localStorage.setItem("jwt", jwt);
+    const token = localStorage.getItem("jwt");
+    console.log({ token });
+    if (token) {
       auth
-        .verifyToken(jwt)
+        .verifyToken(token)
         .then((res) => {
           setLoggedIn(true);
-          setCurrentUser({ currentUser: res.data });
+          setCurrentUser(res.data);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -111,11 +111,11 @@ function App() {
     }
   }, []);
 
-  const handleUpdateUser = (name, avatar) => {
+  const handleUpdateUser = (name, avatar, token) => {
     return auth
-      .updateUser(name, avatar)
+      .updateUser(name, avatar, token)
       .then(() => {
-        verifyToken();
+        verifyToken(token);
         handleCloseModal();
       })
       .catch((error) => {
@@ -154,9 +154,8 @@ function App() {
       });
   }, []);
 
-  const handleAddItemSubmit = ({ name, link, weatherType }) => {
+  const handleAddItemSubmit = ({ name, link, weatherType, token }) => {
     const item = { _id: null, name, link, weather: weatherType };
-    const token = localStorage.getItem("jwt");
 
     addItem(item, token)
       .then((res) => {
@@ -169,9 +168,7 @@ function App() {
       });
   };
 
-  const handleDeleteItem = (id) => {
-    const token = localStorage.getItem("jwt");
-
+  const handleDeleteItem = (id, token) => {
     removeItem(id, token)
       .then(() => {
         const filteredCards = clothingItems.filter((card) => card._id !== id);
@@ -183,9 +180,9 @@ function App() {
       });
   };
 
-  const handleCardLike = ({ id, isLiked, setIsLiked }) => {
+  const handleCardLike = ({ id, isLiked, setIsLiked, token }) => {
     isLiked
-      ? addCardLike(id)
+      ? addCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((c) => (c._id === id ? updatedCard.data : c))
@@ -193,7 +190,7 @@ function App() {
             setIsLiked(true);
           })
           .catch((err) => console.log(err))
-      : removeCardLike(id)
+      : removeCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((c) => (c._id === id ? updatedCard.data : c))

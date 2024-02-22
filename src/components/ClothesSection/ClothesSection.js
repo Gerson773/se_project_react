@@ -13,14 +13,10 @@ const ClothesSection = ({
 }) => {
   const currentUser = useContext(CurrentUserContext);
 
-  const userClothingItems = clothingItems.filter(
-    (item) => item.owner === currentUser._id
-  );
-
   return (
     <div className="clothesSection">
       <div className="clothesSection__items">
-        {userClothingItems?.map((item) => (
+        {clothingItems?.map((item) => (
           <ItemCard
             key={item._id}
             item={item}

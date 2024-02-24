@@ -1,33 +1,32 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useContext } from "react";
 
-const EditProfileModal = ({
-  handleCloseModal,
-  activeModal,
-  currentUser,
-  handleSaveProfile,
-  onEditProfile,
-}) => {
+const EditProfileModal = ({ handleCloseModal, isOpen, handleSaveProfile }) => {
+  const currentUser = useContext(CurrentUserContext);
+
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
 
-  const [avatarUrl, setAvatarUrl] = useState("");
+  const [avatar, setAvatar] = useState("");
   const handleAvatarUrlChange = (e) => {
-    setAvatarUrl(e.target.value);
+    setAvatar(e.target.value);
   };
 
   const handleEditProfile = (e) => {
     e.preventDefault();
-    handleSaveProfile({ name, avatarUrl });
+    handleSaveProfile({ name, avatar });
   };
+
   return (
     <ModalWithForm
       className="edit__profile-modal"
       title="Change profile data"
       onClose={handleCloseModal}
-      isOpen={activeModal === "edit"}
+      isOpen={isOpen}
       onSubmit={handleEditProfile}
       buttonText="Save changes"
       showButton={true}
@@ -42,7 +41,7 @@ const EditProfileModal = ({
           placeholder="Name"
           minLength="1"
           maxLength="30"
-          value={currentUser.name}
+          value={name}
           onChange={handleNameChange}
           required
         />
@@ -57,7 +56,7 @@ const EditProfileModal = ({
           name="link"
           minLength="1"
           maxLength="300"
-          value={currentUser.avatarUrl}
+          value={avatar}
           onChange={handleAvatarUrlChange}
         />
       </label>

@@ -1,15 +1,29 @@
 .sidebar {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-right: 116px;
+}
+
+.sidebar__container-buttons {
+  display: flex;
+  flex-direction: column;
 }
 
 .avatar__sidebar-logo {
-  display: flex;
   margin-left: 40px;
   height: 40px;
   width: 40px;
-  align-items: center;
   border-radius: 50%;
+  box-sizing: border-box;
+  border: 1px;
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+.sidebar__container-profile {
+  display: flex;
+  align-items: center;
+  margin-top: 47px;
 }
 
 .sidebar__avatar-name {
@@ -19,7 +33,38 @@
   font-size: 20px;
   line-height: 24.8px;
   color: #000;
-  margin-left: 16px;
-  margin-top: 10px;
+  margin: 16px;
   white-space: nowrap;
+  align-items: center;
+}
+
+.sidebar__logout-btn {
+  font-family: "CabinetGrotesk-Bold";
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.8px;
+  color: #000;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  padding-left: 40px;
+  padding-top: 8px;
+}
+
+.change__profile-data-btn {
+  font-family: "CabinetGrotesk-Bold";
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.8px;
+  color: #000;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  margin-bottom: 8px;
+  text-align: left;
+  padding-left: 40px;
+  padding-top: 24px;
 }

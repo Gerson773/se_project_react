@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ItemModal from "../ItemModal/ItemModal";
 import { getForecastWeather } from "../../utils/weatherApi";
 import { parseWeatherData } from "../../utils/weatherApi";
@@ -27,6 +27,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { verifyToken } from "../../utils/auth";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -37,6 +38,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+
   const history = useHistory();
 
   const handleCreateModal = () => {
@@ -44,7 +46,6 @@ function App() {
   };
 
   const handleCloseModal = () => {
-    console.log("Closing modal...");
     setActiveModal("");
     history.push("/");
   };
@@ -62,7 +63,6 @@ function App() {
     auth
       .registration(user)
       .then((newUser) => {
-        console.log(newUser);
         setLoggedIn(true);
         setCurrentUser(newUser.data);
         handleCloseModal();
@@ -82,17 +82,19 @@ function App() {
     auth
       .authorize(user)
       .then((res) => {
-        console.log(res);
         setLoggedIn(true);
-        setCurrentUser(res.data);
+        setCurrentUser(res.user);
         handleCloseModal();
-        if (res.token) {
-          localStorage.setItem("jwt", res.token);
-        }
       })
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  const handleSignout = () => {
+    localStorage.removeItem("jwt");
+    setLoggedIn(false);
+    history.push("/");
   };
 
   useEffect(() => {
@@ -110,6 +112,11 @@ function App() {
         });
     }
   }, []);
+
+  const onEditProfile = () => {
+    console.log("Change profile data button clicked");
+    setActiveModal("changeUserProfile");
+  };
 
   const handleUpdateUser = (name, avatar, token) => {
     return auth
@@ -168,10 +175,10 @@ function App() {
       });
   };
 
-  const handleDeleteItem = (id, token) => {
-    removeItem(id, token)
+  const handleDeleteItem = (_id, token) => {
+    removeItem(_id, token)
       .then(() => {
-        const filteredCards = clothingItems.filter((card) => card._id !== id);
+        const filteredCards = clothingItems.filter((card) => card._id !== _id);
         setClothingItems(filteredCards);
         handleCloseModal();
       })
@@ -206,7 +213,7 @@ function App() {
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
-        <CurrentUserContext.Provider value={currentUser} loggedIn={loggedIn}>
+        <CurrentUserContext.Provider value={{ currentUser, loggedIn }}>
           <Header
             onCreateModal={handleCreateModal}
             onSignUp={handleSignupModal}
@@ -239,12 +246,16 @@ function App() {
                 handleUserLogin={handleLogIn}
               />
             </Route>
-            <ProtectedRoute path="/profile">
+            <ProtectedRoute path="/profile" loggedIn={loggedIn}>
               <Profile
                 onSelectCard={handleSelectedCard}
                 onCreateModal={handleCreateModal}
                 clothingItems={clothingItems}
-                onEditProfile={handleUpdateUser}
+                onEditProfile={onEditProfile}
+                handleUpdateUser={handleUpdateUser}
+                loggedIn={loggedIn}
+                onCardLike={handleCardLike}
+                handleSignout={handleSignout}
               />
             </ProtectedRoute>
           </Switch>
@@ -262,6 +273,13 @@ function App() {
               selectedCard={selectCard}
               onClose={handleCloseModal}
               handleDelete={handleDeleteItem}
+            />
+          )}
+          {activeModal === "changeUserProfile" && (
+            <EditProfileModal
+              handleCloseModal={handleCloseModal}
+              isOpen={activeModal === "changeUserProfile"}
+              handleUpdateUser={handleUpdateUser}
             />
           )}
         </CurrentUserContext.Provider>

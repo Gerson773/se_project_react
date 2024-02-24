@@ -6,19 +6,13 @@ import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const Header = ({
-  onCreateModal,
-  setLocation,
-  onSignUp,
-  onLogin,
-  isLoggedIn,
-}) => {
+const Header = ({ onCreateModal, setLocation, onSignUp, onLogin }) => {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
-  const currentUser = useContext(CurrentUserContext);
+  const { currentUser, loggedIn } = useContext(CurrentUserContext);
 
   return (
     <header className="header">
@@ -34,9 +28,10 @@ const Header = ({
           </div>
         </div>
       </div>
-      <div className="header__avatar-logo">
+      <div className="header__signin-container">
         <ToggleSwitch />
-        {isLoggedIn && (
+
+        {loggedIn && (
           <div>
             <button
               className="add__clothes-button"
@@ -47,10 +42,14 @@ const Header = ({
             </button>
           </div>
         )}
-        {isLoggedIn ? (
-          <Link to="/profile" className="header__user-name">
-            {currentUser.name}
-          </Link>
+        {loggedIn ? (
+          currentUser && currentUser.name ? (
+            <Link to="/profile" className="header__avatar-name">
+              {currentUser.name}
+            </Link>
+          ) : (
+            <div>Welcome</div>
+          )
         ) : (
           <div>
             <Link
@@ -63,18 +62,21 @@ const Header = ({
             </Link>
           </div>
         )}
+
         <div>
-          {isLoggedIn ? (
-            currentUser.avatar ? (
+          {loggedIn ? (
+            currentUser && currentUser.avatar ? (
               <Link to="/profile">
                 <img
                   src={currentUser.avatar}
-                  className="header__avatar-logo"
+                  className="header__avatar-signedin"
                   alt="Avatar"
                 />
               </Link>
             ) : (
-              <UserPlaceHolder userName={currentUser.name} />
+              <div>
+                {/* Handle case where avatar or currentUser is not available */}
+              </div>
             )
           ) : (
             <div>

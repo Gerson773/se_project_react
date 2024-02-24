@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { Link, withRouter } from "react-router-dom";
 
-const RegisterModal = ({ onClose, isOpen, handleUserSubmit, activeModal }) => {
+const RegisterModal = ({
+  onClose,
+  isOpen,
+  handleUserSubmit,
+  activeModal,
+  onSubmit,
+}) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -18,14 +24,14 @@ const RegisterModal = ({ onClose, isOpen, handleUserSubmit, activeModal }) => {
     setName(e.target.value);
   };
 
-  const [avatarUrl, setAvatarUrl] = useState("");
+  const [avatar, setAvatar] = useState("");
   const handleAvatarUrlChange = (e) => {
-    setAvatarUrl(e.target.value);
+    setAvatar(e.target.value);
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
-    handleUserSubmit({ email, password, name, avatarUrl });
+    handleUserSubmit({ email, password, name, avatar });
   };
 
   return (
@@ -34,7 +40,7 @@ const RegisterModal = ({ onClose, isOpen, handleUserSubmit, activeModal }) => {
       title="Sign Up"
       onClose={onClose}
       isOpen={isOpen}
-      onSignup={handleRegister}
+      onSubmit={handleRegister}
       showButton={false}
     >
       <label className="modal__label" htmlFor="email">
@@ -77,17 +83,17 @@ const RegisterModal = ({ onClose, isOpen, handleUserSubmit, activeModal }) => {
         />
       </label>
 
-      <label className="modal__label" htmlFor="avatarURL">
+      <label className="modal__label" htmlFor="avatar">
         <p className="modal__header">Avatar URL</p>
         <input
-          id="avatarURL"
+          id="avatar"
           className="modal__input modal__input_type_avatarURL"
           type="url"
           placeholder="Avatar URL"
           name="link"
           minLength="1"
           maxLength="300"
-          value={avatarUrl}
+          value={avatar}
           onChange={handleAvatarUrlChange}
         />
       </label>

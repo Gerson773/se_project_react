@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -11,13 +15,15 @@
   gap: 24px;
   align-items: center;
 }
-
-.header__avatar-logo {
+.header__signin-container {
   display: flex;
   gap: 12px;
   align-items: center;
   border: 1px;
-  border-color: #000;
+  border-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  margin-right: 10px;
+  box-sizing: border-box;
 }
 
 .current__date {
@@ -37,6 +43,7 @@
   outline: none;
   background: none;
   cursor: pointer;
+  align-items: center;
 }
 
 .add__clothes-button:hover {
@@ -44,11 +51,13 @@
 }
 
 .header__avatar-name {
-  font-family: "Cabinet-Grotesk-Bold";
+  font-family: "CabinetGrotesk-Bold";
   font-weight: 700;
   font-size: 20px;
   line-height: 24.8px;
   color: #000;
+  text-decoration: none;
+  align-items: center;
 }
 
 .sign__up-button {
@@ -62,6 +71,7 @@
   background: none;
   cursor: pointer;
   text-decoration: none;
+  margin-left: 10px;
 }
 
 .sign__up-button:hover {
@@ -79,8 +89,22 @@
   background: none;
   cursor: pointer;
   text-decoration: none;
+  margin-right: 15px;
 }
 
 .log__in-button:hover {
   color: #ff4d00;
+}
+
+.header__avatar-signedin {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  border: 1px;
+  border-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+
+  box-sizing: border-box;
 }

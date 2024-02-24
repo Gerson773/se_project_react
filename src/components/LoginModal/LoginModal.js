@@ -15,7 +15,6 @@ const LoginModal = ({ onClose, isOpen, handleUserLogin }) => {
   };
 
   const handleLogin = (e) => {
-    debugger;
     e.preventDefault();
     handleUserLogin({ email, password });
   };
@@ -26,7 +25,7 @@ const LoginModal = ({ onClose, isOpen, handleUserLogin }) => {
       title="Login"
       onClose={onClose}
       isOpen={isOpen}
-      onLogin={handleLogin}
+      onSubmit={handleLogin}
       showButton={false}
     >
       <label className="modal__label" htmlFor="email">

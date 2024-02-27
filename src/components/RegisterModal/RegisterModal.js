@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { Link, withRouter } from "react-router-dom";
 
-const RegisterModal = ({
-  onClose,
-  isOpen,
-  handleUserSubmit,
-  activeModal,
-  onSubmit,
-}) => {
+const RegisterModal = ({ onClose, isOpen, handleUserSubmit }) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);

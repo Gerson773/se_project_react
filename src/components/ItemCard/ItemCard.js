@@ -6,14 +6,17 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
 const ItemCard = ({ item, onSelectCard, onCardLike }) => {
-  const currentUser = useContext(CurrentUserContext);
+  const { currentUser, loggedIn } = useContext(CurrentUserContext);
   const [isLiked, setIsLiked] = useState(
     (item.likes ?? []).some((id) => id === currentUser._id)
   );
 
   const handleLike = () => {
+    debugger;
     setIsLiked(!isLiked);
-    onCardLike({ id: item._id, isLiked: isLiked });
+    if (typeof onCardLike === "function") {
+      onCardLike({ id: item._id, isLiked: isLiked });
+    }
   };
 
   const itemLikeButtonClassName = isLiked ? "liked" : "not-liked";
@@ -29,16 +32,18 @@ const ItemCard = ({ item, onSelectCard, onCardLike }) => {
         />
       </div>
       <div className="card__name">{item.name}</div>
-      <div
-        className={`card__like-icon ${itemLikeButtonClassName}`}
-        onClick={handleLike}
-      >
-        {isLiked ? (
-          <img src={isLikedIcon} alt="Liked Heart Icon" />
-        ) : (
-          <img src={likeIcon} alt="Default Heart Icon" />
-        )}
-      </div>
+      {loggedIn && (
+        <div
+          className={`card__like-icon ${itemLikeButtonClassName}`}
+          onClick={handleLike}
+        >
+          {isLiked ? (
+            <img src={isLikedIcon} alt="Liked Heart Icon" />
+          ) : (
+            <img src={likeIcon} alt="Default Heart Icon" />
+          )}
+        </div>
+      )}
     </div>
   );
 };

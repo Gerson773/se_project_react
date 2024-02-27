@@ -5,9 +5,9 @@ import SideBar from "../SideBar/SideBar";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import PropTypes from "prop-types";
 
-SideBar.propTypes = {
-  handleEditProfileModal: PropTypes.func.isRequired,
-};
+// SideBar.propTypes = {
+//   handleEditProfileModal: PropTypes.func.isRequired,
+// };
 
 const Profile = ({
   clothingItems,
@@ -17,6 +17,7 @@ const Profile = ({
   onAddItem,
   handleSignout,
   onEditProfile,
+  onCardLike,
 }) => {
   const { loggedIn, currentUser } = useContext(CurrentUserContext);
 
@@ -49,6 +50,7 @@ const Profile = ({
               onCardDelete={onCardDelete}
               onAddItem={onAddItem}
               onCreateModal={onCreateModal}
+              onCardLike={onCardLike}
             />
           </div>
         </section>

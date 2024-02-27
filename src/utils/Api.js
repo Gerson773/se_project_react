@@ -15,6 +15,7 @@ export function getItems() {
 }
 
 export function addItem({ name, link, weather, token }) {
+  debugger;
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -23,8 +24,8 @@ export function addItem({ name, link, weather, token }) {
     },
     body: JSON.stringify({
       name,
-      link,
       weather,
+      imageUrl: link,
     }),
   }).then(processServerResponse);
 }
@@ -33,8 +34,9 @@ export function removeItem(_id, token) {
   return fetch(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   }).then(processServerResponse);
 }
@@ -43,6 +45,7 @@ export const addCardLike = (_id, token) => {
   return fetch(`${baseUrl}/items/${_id}/likes`, {
     method: "PUT",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
@@ -53,6 +56,7 @@ export const removeCardLike = (_id, token) => {
   return fetch(`${baseUrl}/items/${_id}/likes`, {
     method: "DELETE",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },

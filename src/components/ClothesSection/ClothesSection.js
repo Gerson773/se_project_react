@@ -10,6 +10,7 @@ const ClothesSection = ({
   onAddItem,
   onCreateModal,
   clothingItems,
+  onCardLike,
 }) => {
   const currentUser = useContext(CurrentUserContext);
 
@@ -29,6 +30,7 @@ const ClothesSection = ({
               onSelectCard={onSelectCard}
               onCardDelete={onCardDelete}
               onCreateModal={onCreateModal}
+              onCardLike={onCardLike}
             />
           );
         })}

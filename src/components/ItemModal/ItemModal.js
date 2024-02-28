@@ -3,7 +3,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./ItemModal.css";
 
 const ItemModal = ({ selectedCard, onClose, handleDelete }) => {
-  const currentUser = useContext(CurrentUserContext);
+  const { currentUser, loggedIn } = useContext(CurrentUserContext);
   const isOwner = selectedCard.owner === currentUser._id;
 
   const itemDeleteButtonClassName = `delete__button-item ${
@@ -28,12 +28,14 @@ const ItemModal = ({ selectedCard, onClose, handleDelete }) => {
           <div className="selected__card-weather">
             Weather type: {selectedCard.weather}
           </div>
-          <button
-            className={itemDeleteButtonClassName}
-            onClick={() => handleDelete(selectedCard._id)}
-          >
-            Delete Item
-          </button>
+          {loggedIn && (
+            <button
+              className={itemDeleteButtonClassName}
+              onClick={() => handleDelete(selectedCard._id)}
+            >
+              Delete Item
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@ export function getItems() {
 }
 
 export function addItem({ name, link, weather, token }) {
-  debugger;
+  console.log("addItem function called");
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {

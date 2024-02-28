@@ -173,22 +173,20 @@ function App() {
   }, []);
 
   const handleAddItemSubmit = ({ name, link, weatherType }) => {
+    console.log("Token:", token);
     debugger;
     const item = { _id: null, name, link, weather: weatherType };
-    debugger;
     addItem({ ...item, token })
       .then((res) => {
-        const newItem = { ...item, _id: res._id };
+        console.log("Response Data:", res);
+        console.log("New Item _id:", res.data._id);
+        const newItem = { ...item, _id: res.data._id };
         setClothingItems([newItem, ...clothingItems]);
         handleCloseModal();
       })
       .catch((error) => {
         console.log(error);
       });
-  };
-
-  const onAddItem = (values) => {
-    console.log(values);
   };
 
   const handleDeleteItem = (_id) => {
@@ -291,7 +289,6 @@ function App() {
               <AddItemModal
                 handleCloseModal={handleCloseModal}
                 isOpen={activeModal === "create"}
-                onAddItem={onAddItem}
                 handleAddItemSubmit={handleAddItemSubmit}
               />
             )}

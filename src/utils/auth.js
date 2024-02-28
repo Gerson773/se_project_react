@@ -30,13 +30,7 @@ export const updateUser = ({ name, avatar }, token) => {
       authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, avatar }),
-  })
-    .then((processServerResponse) => {
-      return processServerResponse.json();
-    })
-    .then((res) => {
-      return res.data;
-    });
+  }).then(processServerResponse);
 };
 
 export const checkToken = (token) => {
@@ -47,7 +41,5 @@ export const checkToken = (token) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  })
-    .then((res) => res.json())
-    .then((res) => res.user);
+  }).then(processServerResponse);
 };

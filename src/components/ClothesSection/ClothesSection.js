@@ -16,9 +16,6 @@ const ClothesSection = ({
   return (
     <div className="clothesSection">
       <div className="clothesSection__items">
-        {console.log("All items before filtering:", clothingItems)}
-        {console.log("userClothingItems in ClothesSection:", userClothingItems)}
-
         {userClothingItems?.map((item) => {
           return (
             <ItemCard

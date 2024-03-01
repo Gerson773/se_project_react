@@ -2,7 +2,6 @@ import { baseUrl } from "./Api";
 import { processServerResponse } from "./utils";
 
 export const registration = ({ email, password, name, avatar }) => {
-  debugger;
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -21,7 +20,6 @@ export const authorize = ({ email, password }) => {
 };
 
 export const updateUser = ({ name, avatar }, token) => {
-  debugger;
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {

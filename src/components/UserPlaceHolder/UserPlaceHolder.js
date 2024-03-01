@@ -1,4 +1,5 @@
 import React from "react";
+import "./UserPlaceHolder.css";
 
 const UserPlaceHolder = ({ userName }) => {
   const firstLetter = userName ? userName[0].toUpperCase() : "";

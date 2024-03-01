@@ -82,18 +82,16 @@ function App() {
   };
 
   const handleLogIn = (user) => {
-    debugger;
     auth
       .authorize(user)
       .then((res) => {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
-          console.log("Token set:", res.token);
+
           setLoggedIn(true);
           setCurrentUser(res.user);
           handleCloseModal();
         } else {
-          console.error("Server response is misson token.");
         }
       })
       .catch((error) => {
@@ -102,16 +100,13 @@ function App() {
   };
 
   const handleSignout = () => {
-    console.log("Signing out...");
     localStorage.removeItem("jwt");
-    console.log("Token after signout:", localStorage.getItem("jwt"));
     setLoggedIn(false);
     history.push("/");
   };
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
-    console.log("Token from localStorage:", token);
 
     if (token) {
       auth
@@ -132,8 +127,6 @@ function App() {
     setActiveModal("changeUserProfile");
   };
   const handleUpdateUser = ({ name, avatar }) => {
-    debugger;
-    console.log("Token:", token);
     return auth
       .updateUser({ name, avatar }, token)
       .then((updatedUserData) => {
@@ -170,7 +163,6 @@ function App() {
 
     getItems()
       .then((items) => {
-        console.log("Received items:", items);
         setClothingItems(items);
       })
       .catch((error) => {
@@ -179,9 +171,6 @@ function App() {
   }, []);
 
   const handleAddItemSubmit = ({ name, link, weatherType }) => {
-    console.log("Token:", token);
-    debugger;
-
     const item = {
       _id: null,
       name,
@@ -191,8 +180,6 @@ function App() {
     };
     addItem({ ...item, token })
       .then((res) => {
-        console.log("Response Data:", res);
-        console.log("New Item _id:", res.data._id);
         const newItem = { ...item, _id: res.data._id };
         setClothingItems([newItem, ...clothingItems]);
         handleCloseModal();
@@ -215,13 +202,10 @@ function App() {
   };
 
   const handleCardLike = (id) => {
-    debugger;
     console.log("is _id an id", id);
     if (!isLiked) {
       addCardLike(id, token)
         .then((updatedCard) => {
-          console.log("Updated Card Data after unlike:", updatedCard);
-
           setClothingItems((cards) =>
             cards.map((c) => (c._id === id ? updatedCard.data : c))
           );
@@ -229,12 +213,8 @@ function App() {
         })
         .catch((err) => console.log(err));
     } else {
-      console.log("ID before calling removeCardLike:", id);
-
       removeCardLike(id.toString(), token)
         .then((updatedCard) => {
-          console.log("Updated Card Data after unlike:", updatedCard);
-
           setClothingItems((cards) =>
             cards.map((c) => (c._id === id ? updatedCard.data : c))
           );

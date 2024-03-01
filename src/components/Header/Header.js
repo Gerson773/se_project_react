@@ -75,7 +75,7 @@ const Header = ({ onCreateModal, setLocation, onSignUp, onLogin }) => {
               </Link>
             ) : (
               <div>
-                {/* Handle case where avatar or currentUser is not available */}
+                <UserPlaceHolder userName={currentUser.name} />
               </div>
             )
           ) : (

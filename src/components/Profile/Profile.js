@@ -15,9 +15,7 @@ const Profile = ({
   onCardLike,
 }) => {
   const { loggedIn, currentUser } = useContext(CurrentUserContext);
-  console.log("currentUser._id:", currentUser._id);
 
-  console.log("clothingItems:", clothingItems);
   const userClothingItems = clothingItems.filter(
     (item) => item.owner === currentUser._id
   );
@@ -44,18 +42,6 @@ const Profile = ({
                 </button>
               </div>
             </div>
-
-            {console.log(
-              "userClothingItems length in Profile:",
-              userClothingItems.length
-            )}
-            {console.log("clothingItems in Profile.js:", clothingItems)}
-            {console.log("currentUser._id:", currentUser._id)}
-            {console.log("clothingItems structure:", clothingItems)}
-            {console.log(
-              "Owner IDs in clothingItems:",
-              clothingItems.map((item) => item.owner)
-            )}
 
             <ClothesSection
               userClothingItems={userClothingItems}

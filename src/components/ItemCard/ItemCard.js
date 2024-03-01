@@ -15,7 +15,7 @@ const ItemCard = ({ item, onSelectCard, onCardLike }) => {
     debugger;
     setIsLiked(!isLiked);
     if (typeof onCardLike === "function") {
-      onCardLike({ id: item._id, isLiked: isLiked });
+      onCardLike(item._id);
     }
   };
 

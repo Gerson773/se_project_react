@@ -3,11 +3,6 @@ import "./Profile.css";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import SideBar from "../SideBar/SideBar";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import PropTypes from "prop-types";
-
-// SideBar.propTypes = {
-//   handleEditProfileModal: PropTypes.func.isRequired,
-// };
 
 const Profile = ({
   clothingItems,
@@ -20,6 +15,12 @@ const Profile = ({
   onCardLike,
 }) => {
   const { loggedIn, currentUser } = useContext(CurrentUserContext);
+  console.log("currentUser._id:", currentUser._id);
+
+  console.log("clothingItems:", clothingItems);
+  const userClothingItems = clothingItems.filter(
+    (item) => item.owner === currentUser._id
+  );
 
   return (
     <div>
@@ -44,8 +45,20 @@ const Profile = ({
               </div>
             </div>
 
+            {console.log(
+              "userClothingItems length in Profile:",
+              userClothingItems.length
+            )}
+            {console.log("clothingItems in Profile.js:", clothingItems)}
+            {console.log("currentUser._id:", currentUser._id)}
+            {console.log("clothingItems structure:", clothingItems)}
+            {console.log(
+              "Owner IDs in clothingItems:",
+              clothingItems.map((item) => item.owner)
+            )}
+
             <ClothesSection
-              clothingItems={clothingItems}
+              userClothingItems={userClothingItems}
               onSelectCard={onSelectCard}
               onCardDelete={onCardDelete}
               onAddItem={onAddItem}

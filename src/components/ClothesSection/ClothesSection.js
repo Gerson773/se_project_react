@@ -9,18 +9,16 @@ const ClothesSection = ({
   onCardDelete,
   onAddItem,
   onCreateModal,
-  clothingItems,
+  userClothingItems,
   onCardLike,
+  clothingItems,
 }) => {
-  const currentUser = useContext(CurrentUserContext);
-
-  const userClothingItems = clothingItems.filter(
-    (item) => item.owner === currentUser._id
-  );
-
   return (
     <div className="clothesSection">
       <div className="clothesSection__items">
+        {console.log("All items before filtering:", clothingItems)}
+        {console.log("userClothingItems in ClothesSection:", userClothingItems)}
+
         {userClothingItems?.map((item) => {
           return (
             <ItemCard

@@ -136,7 +136,13 @@ function App() {
     console.log("Token:", token);
     return auth
       .updateUser({ name, avatar }, token)
-      .then(() => {
+      .then((updatedUserData) => {
+        console.log("Received Updated User Data:", updatedUserData);
+        setCurrentUser(updatedUserData);
+        return updatedUserData;
+      })
+      .then((updatedUserData) => {
+        console.log("Updated User Data:", updatedUserData);
         handleCloseModal();
       })
       .catch((error) => {
@@ -175,7 +181,14 @@ function App() {
   const handleAddItemSubmit = ({ name, link, weatherType }) => {
     console.log("Token:", token);
     debugger;
-    const item = { _id: null, name, link, weather: weatherType };
+
+    const item = {
+      _id: null,
+      name,
+      link,
+      weather: weatherType,
+      owner: currentUser._id,
+    };
     addItem({ ...item, token })
       .then((res) => {
         console.log("Response Data:", res);
@@ -204,9 +217,11 @@ function App() {
   const handleCardLike = (id) => {
     debugger;
     console.log("is _id an id", id);
-    if (isLiked) {
+    if (!isLiked) {
       addCardLike(id, token)
         .then((updatedCard) => {
+          console.log("Updated Card Data after unlike:", updatedCard);
+
           setClothingItems((cards) =>
             cards.map((c) => (c._id === id ? updatedCard.data : c))
           );
@@ -214,11 +229,16 @@ function App() {
         })
         .catch((err) => console.log(err));
     } else {
-      removeCardLike(id, token)
+      console.log("ID before calling removeCardLike:", id);
+
+      removeCardLike(id.toString(), token)
         .then((updatedCard) => {
+          console.log("Updated Card Data after unlike:", updatedCard);
+
           setClothingItems((cards) =>
             cards.map((c) => (c._id === id ? updatedCard.data : c))
           );
+          setIsLiked(false);
         })
         .catch((error) => {
           console.error("Error", error);
@@ -255,7 +275,7 @@ function App() {
                   weatherTemp={temp}
                   onSelectCard={handleSelectedCard}
                   clothingItems={clothingItems}
-                  onCardLike={handleCardLike}
+                  onCardLike={onCardLike}
                 />
               </Route>
 

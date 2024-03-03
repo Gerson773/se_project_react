@@ -8,11 +8,10 @@ import { useContext } from "react";
 const ItemCard = ({ item, onSelectCard, onCardLike }) => {
   const { currentUser, loggedIn } = useContext(CurrentUserContext);
   const [isLiked, setIsLiked] = useState(
-    (item.likes ?? []).some((id) => id === currentUser._id)
+    (item.likes ?? []).some((id) => currentUser && id === currentUser._id)
   );
 
   const handleLike = () => {
-    debugger;
     setIsLiked(!isLiked);
     if (typeof onCardLike === "function") {
       onCardLike(item._id);
@@ -24,6 +23,9 @@ const ItemCard = ({ item, onSelectCard, onCardLike }) => {
   return (
     <div className="card__container">
       <div>
+        {/* {console.log("Item Link:", item.link)}
+        {console.log("Item Image URL:", item.imageUrl)} */}
+
         <img
           src={item.link || item.imageUrl}
           className="card__image"

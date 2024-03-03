@@ -75,7 +75,9 @@ const Header = ({ onCreateModal, setLocation, onSignUp, onLogin }) => {
               </Link>
             ) : (
               <div>
-                <UserPlaceHolder userName={currentUser.name} />
+                {currentUser ? (
+                  <UserPlaceHolder userName={currentUser.name} />
+                ) : null}
               </div>
             )
           ) : (

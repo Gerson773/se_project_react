@@ -38,7 +38,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("jwt") || "");
   const [isLiked, setIsLiked] = useState(false);
 
@@ -57,6 +57,7 @@ function App() {
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
+    console.log("Log the card inf", card);
   };
 
   const handleSignupModal = () => {
@@ -85,14 +86,11 @@ function App() {
     auth
       .authorize(user)
       .then((res) => {
-        if (res.token) {
-          localStorage.setItem("jwt", res.token);
-
-          setLoggedIn(true);
-          setCurrentUser(res.user);
-          handleCloseModal();
-        } else {
-        }
+        localStorage.setItem("jwt", res.token);
+        setLoggedIn(true);
+        setCurrentUser(res.user);
+        handleCloseModal();
+        history.push("/profile");
       })
       .catch((error) => {
         console.error(error);
@@ -102,13 +100,24 @@ function App() {
   const handleSignout = () => {
     localStorage.removeItem("jwt");
     setLoggedIn(false);
+    setCurrentUser({});
     history.push("/");
   };
 
   useEffect(() => {
+    console.log("After Logout - currentUser:", currentUser);
+  }, [currentUser]);
+
+  console.log("Before checking token - loggedIn:", loggedIn);
+  console.log("Before checking token - currentUser:", currentUser);
+
+  useEffect(() => {
+    console.log("Inside useEffect - loggedIn:", loggedIn);
+    console.log("Inside useEffect - currentUser:", currentUser);
+
     const token = localStorage.getItem("jwt");
 
-    if (token) {
+    if (loggedIn && !currentUser) {
       auth
         .checkToken(token)
         .then((res) => {
@@ -121,7 +130,7 @@ function App() {
           setLoggedIn(false);
         });
     }
-  }, []);
+  }, [loggedIn]);
 
   const handleEditProfileModal = () => {
     setActiveModal("changeUserProfile");
@@ -176,10 +185,11 @@ function App() {
       name,
       link,
       weather: weatherType,
-      owner: currentUser._id,
+      owner: currentUser?._id,
     };
     addItem({ ...item, token })
       .then((res) => {
+        console.log("Server Response:", res);
         const newItem = { ...item, _id: res.data._id };
         setClothingItems([newItem, ...clothingItems]);
         handleCloseModal();

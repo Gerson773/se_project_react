@@ -41,6 +41,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("jwt") || "");
   const [isLiked, setIsLiked] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoggedInLoading, setIsLoggedInLoading] = useState(true);
 
   const history = useHistory();
   const AuthContext = createContext();
@@ -108,27 +110,31 @@ function App() {
     console.log("After Logout - currentUser:", currentUser);
   }, [currentUser]);
 
-  console.log("Before checking token - loggedIn:", loggedIn);
-  console.log("Before checking token - currentUser:", currentUser);
-
   useEffect(() => {
-    console.log("Inside useEffect - loggedIn:", loggedIn);
-    console.log("Inside useEffect - currentUser:", currentUser);
-
     const token = localStorage.getItem("jwt");
 
-    if (loggedIn && !currentUser) {
+    if (token) {
+      setIsLoggedInLoading(true);
+      setIsLoading(true);
+
       auth
         .checkToken(token)
         .then((res) => {
-          setLoggedIn(true);
-          setCurrentUser(res.user);
+          if (res && res.user) {
+            setCurrentUser(res.user);
+            setLoggedIn(true);
+          }
         })
         .catch((error) => {
           console.error("Error checking token:", error);
-          localStorage.removeItem("jwt");
-          setLoggedIn(false);
+        })
+        .finally(() => {
+          setIsLoggedInLoading(false);
+          setIsLoading(false);
         });
+    } else {
+      setIsLoggedInLoading(false);
+      setIsLoading(false);
     }
   }, [loggedIn]);
 
@@ -248,7 +254,9 @@ function App() {
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
-          <CurrentUserContext.Provider value={{ currentUser, loggedIn }}>
+          <CurrentUserContext.Provider
+            value={{ currentUser, loggedIn, isLoggedInLoading }}
+          >
             <Header
               onCreateModal={handleCreateModal}
               onSignUp={handleSignupModal}
@@ -281,7 +289,11 @@ function App() {
                   handleUserLogin={handleLogIn}
                 />
               </Route>
-              <ProtectedRoute path="/profile" loggedIn={loggedIn}>
+              <ProtectedRoute
+                path="/profile"
+                loggedIn={loggedIn}
+                isLoggedInLoading={isLoggedInLoading}
+              >
                 <Profile
                   onSelectCard={handleSelectedCard}
                   onCreateModal={handleCreateModal}

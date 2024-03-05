@@ -52,14 +52,13 @@ const Header = ({ onCreateModal, setLocation, onSignUp, onLogin }) => {
           )
         ) : (
           <div>
-            <Link
-              to="/signup"
+            <button
               className="sign__up-button"
-              type="text"
+              type="button"
               onClick={onSignUp}
             >
               Sign Up
-            </Link>
+            </button>
           </div>
         )}
 
@@ -82,9 +81,9 @@ const Header = ({ onCreateModal, setLocation, onSignUp, onLogin }) => {
             )
           ) : (
             <div>
-              <Link to="/login" className="log__in-button" onClick={onLogin}>
+              <button className="log__in-button" onClick={onLogin}>
                 Log In
-              </Link>
+              </button>
             </div>
           )}
         </div>

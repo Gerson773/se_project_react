@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { Link, withRouter } from "react-router-dom";
 
-const RegisterModal = ({ onClose, isOpen, handleUserSubmit }) => {
+const RegisterModal = ({ onClose, isOpen, handleUserSubmit, onLogin }) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -23,8 +23,8 @@ const RegisterModal = ({ onClose, isOpen, handleUserSubmit }) => {
     setAvatar(e.target.value);
   };
 
-  const handleRegister = (e) => {
-    e.preventDefault();
+  const handleRegister = (event) => {
+    event.preventDefault();
     handleUserSubmit({ email, password, name, avatar });
   };
 
@@ -94,15 +94,15 @@ const RegisterModal = ({ onClose, isOpen, handleUserSubmit }) => {
       <div className="button-container">
         <button
           type="submit"
-          onSubmit={handleRegister}
+          onClick={handleRegister}
           className="next__signup-btn"
         >
           Next
         </button>
-        <div className="login__signin">
-          <Link to="login" className="signin__login-link">
+        <div>
+          <button type="button" className="login__signin" onClick={onLogin}>
             or Log In
-          </Link>
+          </button>
         </div>
       </div>
     </ModalWithForm>

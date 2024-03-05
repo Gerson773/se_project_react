@@ -3,7 +3,13 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 import { Link, withRouter } from "react-router-dom";
 
-const LoginModal = ({ onClose, isOpen, handleUserLogin }) => {
+const LoginModal = ({
+  onClose,
+  isOpen,
+  handleUserLogin,
+  onSignUp,
+  handleSignUpModal,
+}) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -55,15 +61,19 @@ const LoginModal = ({ onClose, isOpen, handleUserLogin }) => {
       <div className="button-container">
         <button
           type="submit"
-          onSubmit={handleLogin}
+          onClick={handleLogin}
           className="next__signup-btn"
         >
           Next
         </button>
-        <div className="register__signin">
-          <Link to="signup" className="register__login-link">
+        <div>
+          <button
+            type="button"
+            className="register__login-link"
+            onClick={onSignUp}
+          >
             or Register
-          </Link>
+          </button>
         </div>
       </div>
     </ModalWithForm>

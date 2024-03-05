@@ -2,7 +2,7 @@
   display: flex;
   position: fixed;
   inset: 0;
-  z-index: 999;
+  z-index: 1000;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
@@ -148,13 +148,17 @@
 }
 
 .register__login-link {
-  font-family: "CabinetGrotesk-Medium";
   color: rgba(0, 0, 0, 0.5);
+  font-family: "CabinetGrotesk-Medium";
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
-  text-decoration: none;
+  margin-left: 12px;
+  margin-top: 30px;
+  border: none;
+  outline: none;
+  background: none;
 }
 
 .next__signup-btn {
@@ -171,16 +175,15 @@
 }
 
 .login__signin {
-  margin-left: 12px;
-  margin-top: 30px;
-}
-
-.signin__login-link {
-  font-family: "CabinetGrotesk-Medium";
   color: rgba(0, 0, 0, 0.5);
+  font-family: "CabinetGrotesk-Medium";
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
-  text-decoration: none;
+  margin-left: 12px;
+  margin-top: 30px;
+  border: none;
+  outline: none;
+  background: none;
 }

@@ -4,7 +4,7 @@ import "./ItemModal.css";
 
 const ItemModal = ({ selectedCard, onClose, handleDelete }) => {
   const { currentUser, loggedIn } = useContext(CurrentUserContext);
-  const isOwner = selectedCard.owner === currentUser._id;
+  const isOwner = selectedCard.owner === currentUser?._id;
 
   const itemDeleteButtonClassName = `delete__button-item ${
     isOwner ? "item__delete-button_visible" : "item__delete-button_hidden"
@@ -15,7 +15,7 @@ const ItemModal = ({ selectedCard, onClose, handleDelete }) => {
       <div className="modal__content modal__container_item_view">
         <img
           className="modal__image"
-          src={selectedCard.link}
+          src={selectedCard.imageUrl}
           alt={selectedCard.name}
         />
         <button

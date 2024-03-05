@@ -59,7 +59,6 @@ function App() {
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
-    console.log("Log the card inf", card);
   };
 
   const handleSignupModal = () => {
@@ -107,10 +106,6 @@ function App() {
   };
 
   useEffect(() => {
-    console.log("After Logout - currentUser:", currentUser);
-  }, [currentUser]);
-
-  useEffect(() => {
     const token = localStorage.getItem("jwt");
 
     if (token) {
@@ -120,8 +115,8 @@ function App() {
       auth
         .checkToken(token)
         .then((res) => {
-          if (res && res.user) {
-            setCurrentUser(res.user);
+          if (res) {
+            setCurrentUser(res);
             setLoggedIn(true);
           }
         })
@@ -186,6 +181,7 @@ function App() {
   }, []);
 
   const handleAddItemSubmit = ({ name, link, weatherType }) => {
+    console.log("Item data:", { name, link, weatherType });
     const item = {
       _id: null,
       name,
@@ -281,6 +277,8 @@ function App() {
                 <RegisterModal
                   onClose={handleCloseModal}
                   handleUserSubmit={handleSignUp}
+                  onSignUp={handleSignupModal}
+                  isOpen={activeModal === "signup"}
                 />
               </Route>
               <Route path="/login">
@@ -307,6 +305,24 @@ function App() {
               </ProtectedRoute>
             </Switch>
             <Footer />
+            {activeModal === "login" && (
+              <LoginModal
+                onClose={handleCloseModal}
+                handleUserLogin={handleLogIn}
+                isOpen={activeModal === "login"}
+                onSignUp={handleSignupModal}
+              />
+            )}
+
+            {activeModal === "signup" && (
+              <RegisterModal
+                onClose={handleCloseModal}
+                handleUserSubmit={handleSignUp}
+                isOpen={activeModal === "signup"}
+                onLogin={handleLoginModal}
+              />
+            )}
+
             {activeModal === "create" && (
               <AddItemModal
                 handleCloseModal={handleCloseModal}

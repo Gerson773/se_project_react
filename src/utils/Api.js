@@ -16,7 +16,6 @@ export function getItems() {
 
 export function addItem({ name, link, weather, token, owner }) {
   console.log("addItem function called");
-
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -29,7 +28,10 @@ export function addItem({ name, link, weather, token, owner }) {
       imageUrl: link,
       owner,
     }),
-  }).then(processServerResponse);
+  }).then((response) => {
+    console.log("Server Response:", response);
+    return processServerResponse(response);
+  });
 }
 
 export function removeItem(_id, token) {

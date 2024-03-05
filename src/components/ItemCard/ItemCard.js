@@ -23,11 +23,8 @@ const ItemCard = ({ item, onSelectCard, onCardLike }) => {
   return (
     <div className="card__container">
       <div>
-        {/* {console.log("Item Link:", item.link)}
-        {console.log("Item Image URL:", item.imageUrl)} */}
-
         <img
-          src={item.link || item.imageUrl}
+          src={item.imageUrl || item.link}
           className="card__image"
           onClick={() => onSelectCard(item)}
           alt={item.name}

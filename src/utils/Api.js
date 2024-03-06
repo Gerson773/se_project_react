@@ -28,10 +28,7 @@ export function addItem({ name, link, weather, token, owner }) {
       imageUrl: link,
       owner,
     }),
-  }).then((response) => {
-    console.log("Server Response:", response);
-    return processServerResponse(response);
-  });
+  }).then(processServerResponse);
 }
 
 export function removeItem(_id, token) {

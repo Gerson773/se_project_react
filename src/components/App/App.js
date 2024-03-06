@@ -53,7 +53,6 @@ function App() {
 
   const handleCloseModal = () => {
     setActiveModal("");
-    history.push("/");
   };
 
   const handleSelectedCard = (card) => {
@@ -87,11 +86,13 @@ function App() {
     auth
       .authorize(user)
       .then((res) => {
-        localStorage.setItem("jwt", res.token);
+        console.log("Server Response:", res);
+        localStorage.setItem("jwt");
         setLoggedIn(true);
         setCurrentUser(res.user);
         handleCloseModal();
         history.push("/profile");
+        // window.location.reload();
       })
       .catch((error) => {
         console.error(error);
@@ -100,6 +101,7 @@ function App() {
 
   const handleSignout = () => {
     localStorage.removeItem("jwt");
+    console.log(localStorage.getItem("jwt"));
     setLoggedIn(false);
     setCurrentUser({});
     history.push("/");
@@ -107,6 +109,7 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
+    console.log("Token on Initial Render:", token);
 
     if (token) {
       setIsLoggedInLoading(true);
@@ -136,6 +139,7 @@ function App() {
   const handleEditProfileModal = () => {
     setActiveModal("changeUserProfile");
   };
+
   const handleUpdateUser = ({ name, avatar }) => {
     return auth
       .updateUser({ name, avatar }, token)
@@ -182,6 +186,8 @@ function App() {
 
   const handleAddItemSubmit = ({ name, link, weatherType }) => {
     console.log("Item data:", { name, link, weatherType });
+    console.log("Current User ID:", currentUser?._id);
+
     const item = {
       _id: null,
       name,

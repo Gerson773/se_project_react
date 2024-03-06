@@ -15,7 +15,7 @@ const ItemModal = ({ selectedCard, onClose, handleDelete }) => {
       <div className="modal__content modal__container_item_view">
         <img
           className="modal__image"
-          src={selectedCard.imageUrl}
+          src={selectedCard.imageUrl || selectedCard.link}
           alt={selectedCard.name}
         />
         <button

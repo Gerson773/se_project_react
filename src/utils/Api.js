@@ -19,6 +19,7 @@ export function addItem({ name, link, weather, token, owner }) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },

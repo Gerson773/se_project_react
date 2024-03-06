@@ -89,7 +89,7 @@ function App() {
         console.log("Server Response:", res);
         localStorage.setItem("jwt", res.token);
         setLoggedIn(true);
-        setCurrentUser(res.user);
+        setCurrentUser(res);
         handleCloseModal();
         history.push("/profile");
         // window.location.reload();
@@ -195,6 +195,10 @@ function App() {
       weather: weatherType,
       owner: currentUser?._id,
     };
+
+    console.log("Token before addItem:", token);
+    console.log("Current User ID during addItem:", currentUser?._id);
+
     addItem({ ...item, token })
       .then((res) => {
         console.log("Server Response:", res);

@@ -87,7 +87,7 @@ function App() {
       .authorize(user)
       .then((res) => {
         console.log("Server Response:", res);
-        localStorage.setItem("jwt");
+        localStorage.setItem("jwt", res.token);
         setLoggedIn(true);
         setCurrentUser(res.user);
         handleCloseModal();

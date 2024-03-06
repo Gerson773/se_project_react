@@ -87,12 +87,12 @@ function App() {
       .authorize(user)
       .then((res) => {
         console.log("Server Response:", res);
+        setToken(res.token);
         localStorage.setItem("jwt", res.token);
         setLoggedIn(true);
         setCurrentUser(res);
         handleCloseModal();
         history.push("/profile");
-        // window.location.reload();
       })
       .catch((error) => {
         console.error(error);
@@ -109,7 +109,6 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
-    console.log("Token on Initial Render:", token);
 
     if (token) {
       setIsLoggedInLoading(true);
@@ -185,9 +184,6 @@ function App() {
   }, []);
 
   const handleAddItemSubmit = ({ name, link, weatherType }) => {
-    console.log("Item data:", { name, link, weatherType });
-    console.log("Current User ID:", currentUser?._id);
-
     const item = {
       _id: null,
       name,
@@ -196,12 +192,8 @@ function App() {
       owner: currentUser?._id,
     };
 
-    console.log("Token before addItem:", token);
-    console.log("Current User ID during addItem:", currentUser?._id);
-
     addItem({ ...item, token })
       .then((res) => {
-        console.log("Server Response:", res);
         const newItem = { ...item, _id: res.data._id };
         setClothingItems([newItem, ...clothingItems]);
         handleCloseModal();

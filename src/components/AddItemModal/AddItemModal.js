@@ -30,7 +30,6 @@ const AddItemModal = ({ handleCloseModal, isOpen, handleAddItemSubmit }) => {
       isOpen={isOpen}
       onSubmit={handleSubmit}
       buttonText="Add Garment"
-      showButton={true}
     >
       <label className="modal__label" htmlFor="name">
         <p className="modal__header">Name</p>
@@ -104,6 +103,11 @@ const AddItemModal = ({ handleCloseModal, isOpen, handleAddItemSubmit }) => {
           <label htmlFor="cold" className="weather__radio-label">
             Cold
           </label>
+          <div className="button-container">
+            <button type="submit" className="add__garment-btn">
+              Add Garment
+            </button>
+          </div>
         </div>
       </div>
     </ModalWithForm>

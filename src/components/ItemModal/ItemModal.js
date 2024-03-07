@@ -28,7 +28,7 @@ const ItemModal = ({ selectedCard, onClose, handleDelete }) => {
           <div className="selected__card-weather">
             Weather type: {selectedCard.weather}
           </div>
-          {loggedIn && (
+          {loggedIn && currentUser?._id === selectedCard.owner && (
             <button
               className={itemDeleteButtonClassName}
               onClick={() => handleDelete(selectedCard._id)}

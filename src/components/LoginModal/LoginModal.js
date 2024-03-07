@@ -32,7 +32,6 @@ const LoginModal = ({
       onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleLogin}
-      showButton={false}
     >
       <label className="modal__label" htmlFor="email">
         <p className="modal__header">Email</p>
@@ -59,11 +58,7 @@ const LoginModal = ({
         />
       </label>
       <div className="button-container">
-        <button
-          type="submit"
-          onClick={handleLogin}
-          className="next__signup-btn"
-        >
+        <button type="submit" className="next__signup-btn">
           Next
         </button>
         <div>

@@ -58,7 +58,7 @@ function Main({ weatherTemp, onSelectCard, clothingItems, onCardLike }) {
                 link={item.link}
                 name={item.name}
                 weather={item.weather}
-                // onCardLike={onCardLike}
+                onCardLike={onCardLike}
               />
             );
           })}

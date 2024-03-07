@@ -33,7 +33,6 @@ const EditProfileModal = ({ handleCloseModal, isOpen, handleSaveProfile }) => {
       isOpen={isOpen}
       onSubmit={handleEditProfile}
       buttonText="Save changes"
-      showButton={true}
     >
       <label className="modal__label" htmlFor="name">
         <p className="modal__header">Name*</p>
@@ -60,10 +59,15 @@ const EditProfileModal = ({ handleCloseModal, isOpen, handleSaveProfile }) => {
           name="link"
           minLength="1"
           maxLength="300"
-          value={currentUser.avatar}
+          value={avatar}
           onChange={handleAvatarUrlChange}
         />
       </label>
+      <div className="button-container">
+        <button type="submit" className="add__garment-btn">
+          Save changes
+        </button>
+      </div>
     </ModalWithForm>
   );
 };

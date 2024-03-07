@@ -7,8 +7,8 @@ import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
 
 const SideBar = ({ handleSignout, onEditProfile }) => {
   const { loggedIn, currentUser } = useContext(CurrentUserContext);
-  const Avatar = currentUser ? currentUser.avatar : null;
-  const Name = currentUser ? currentUser.name : null;
+  const avatar = currentUser ? currentUser.avatar : null;
+  const name = currentUser ? currentUser.name : null;
   const history = useHistory();
 
   const displayAvatar = Avatar !== null && Avatar !== "";
@@ -19,9 +19,9 @@ const SideBar = ({ handleSignout, onEditProfile }) => {
         <div className="sidebar">
           <div className="sidebar__container-profile">
             {displayAvatar && (
-              <img src={Avatar} alt="Avatar" className="avatar__sidebar-logo" />
+              <img src={avatar} alt="Avatar" className="avatar__sidebar-logo" />
             )}
-            <p className="sidebar__avatar-name">{Name}</p>
+            <p className="sidebar__avatar-name">{name}</p>
           </div>
           <div className="sidebar__container-buttons">
             <button

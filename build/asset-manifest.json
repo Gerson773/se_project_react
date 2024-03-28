@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/se_project_react/static/css/main.668bd35e.css",
-    "main.js": "/se_project_react/static/js/main.d2296afe.js",
+    "main.css": "/se_project_react/static/css/main.e7934c70.css",
+    "main.js": "/se_project_react/static/js/main.3f69143b.js",
     "static/js/787.79f92504.chunk.js": "/se_project_react/static/js/787.79f92504.chunk.js",
     "static/media/avatar.svg": "/se_project_react/static/media/avatar.1bc910602d5d6bf0e8e87d007663c593.svg",
     "static/media/CabinetGrotesk-Bold.woff": "/se_project_react/static/media/CabinetGrotesk-Bold.4e6ceb64c2d0c044d897.woff",
@@ -10,17 +10,19 @@
     "static/media/logo.svg": "/se_project_react/static/media/logo.2e52a3b54443b649938df0a9b3d231e2.svg",
     "static/media/night-cloudy.svg": "/se_project_react/static/media/night-cloudy.c52565b10982a97a5a67275442bd12ee.svg",
     "static/media/day-cloudy.svg": "/se_project_react/static/media/day-cloudy.afb98af2bd43d3a2a330e655695bd2c9.svg",
+    "static/media/likeIcon.svg": "/se_project_react/static/media/likeIcon.13dc767d9f4d279e5b84bdfdb8a7047a.svg",
+    "static/media/islikedicon.svg": "/se_project_react/static/media/islikedicon.616e3e7d993626c955811064b26caf99.svg",
     "static/media/xclosebtn.svg": "/se_project_react/static/media/xclosebtn.41654df85174806f9922.svg",
     "index.html": "/se_project_react/index.html",
     "static/media/itemclosebtn.svg": "/se_project_react/static/media/itemclosebtn.33bc5353dc8c138372ed.svg",
     "static/media/clear-moon.svg": "/se_project_react/static/media/clear-moon.ae0e6bbe1e0bfc883f3ba207396bf3b4.svg",
     "static/media/sunny.svg": "/se_project_react/static/media/sunny.1c3ffd02d92146a2673939be89b88d54.svg",
-    "main.668bd35e.css.map": "/se_project_react/static/css/main.668bd35e.css.map",
-    "main.d2296afe.js.map": "/se_project_react/static/js/main.d2296afe.js.map",
+    "main.e7934c70.css.map": "/se_project_react/static/css/main.e7934c70.css.map",
+    "main.3f69143b.js.map": "/se_project_react/static/js/main.3f69143b.js.map",
     "787.79f92504.chunk.js.map": "/se_project_react/static/js/787.79f92504.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.668bd35e.css",
-    "static/js/main.d2296afe.js"
+    "static/css/main.e7934c70.css",
+    "static/js/main.3f69143b.js"
   ]
 }

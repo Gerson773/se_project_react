@@ -2,7 +2,7 @@ import { processServerResponse, request } from "./utils";
 
 export const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://weatherchi.crabdance.com"
+    ? "https://api.weatherchi.hollandweather.net"
     : "http://localhost:3001";
 
 export function getItems() {

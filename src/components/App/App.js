@@ -102,7 +102,6 @@ function App() {
     auth
       .authorize(user)
       .then((res) => {
-        console.log("Server Response:", res);
         setToken(res.token);
         localStorage.setItem("jwt", res.token);
         setLoggedIn(true);

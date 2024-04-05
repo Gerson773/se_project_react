@@ -87,7 +87,6 @@ function App() {
         setLoggedIn(true);
         setCurrentUser(newUser.data);
         handleCloseModal();
-        console.log(newUser);
       })
       .catch((error) => {
         console.log(error);

@@ -8,12 +8,13 @@ export const baseUrl =
 export function getItems() {
   return fetch(`${baseUrl}/items`, {
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
   }).then(processServerResponse);
 }
 
-export function addItem({ name, link, weather, token, owner }) {
+export function addItem({ name, link, weather, token }) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -25,7 +26,6 @@ export function addItem({ name, link, weather, token, owner }) {
       name,
       weather,
       imageUrl: link,
-      owner,
     }),
   }).then(processServerResponse);
 }
